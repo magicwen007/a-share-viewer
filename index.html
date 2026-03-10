@@ -308,6 +308,19 @@
         timePoints = timeMap;
 
         console.log('动态扫描结果:', { availableDates, timePoints });
+
+        // 备用方案：如果扫描结果为空，使用硬编码数据
+        if (availableDates.length === 0) {
+          availableDates = ['2026-03-10', '2026-03-09', '2026-03-06', '2026-03-05'];
+          timePoints = {
+            '2026-03-10': ['1000', '1200'],
+            '2026-03-09': ['1000', '1200', '1400', '1500'],
+            '2026-03-06': ['1000', '1400', '1500'],
+            '2026-03-05': ['1000', '1500']
+          };
+          console.log('使用备用数据');
+        }
+
         return { availableDates, timePoints };
 
       } catch (error) {
