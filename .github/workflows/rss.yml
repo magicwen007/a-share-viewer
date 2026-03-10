@@ -79,8 +79,8 @@ jobs:
               desc = get_description(date)
               rss += f'''  <item>
                 <title><![CDATA[{title}]]></title>
-                <link>https://magicwen007.github.io/a-share-viewer/#{date}:summary</link>
-                <guid>https://magicwen007.github.io/a-share-viewer/#{date}:summary</guid>
+                <link>https://raw.githubusercontent.com/magicwen007/a-share-viewer/main/data/a-share/#{date}/weixin.md</link>
+                <guid>https://raw.githubusercontent.com/magicwen007/a-share-viewer/main/data/a-share/#{date}/weixin.md</guid>
                 <pubDate>{pub}</pubDate>
                 <description><![CDATA[{desc}]]></description>
               </item>
