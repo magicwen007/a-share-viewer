@@ -317,7 +317,7 @@
       
       try {
         // 优先尝试加载 weixin.md（汇总版）
-        const response = await fetch(`../data/a-share/${date}/weixin.md`);
+        const response = await fetch(`data/a-share/${date}/weixin.md`);
         
         if (response.ok) {
           const mdContent = await response.text();
@@ -356,7 +356,7 @@
       for (const time of times) {
         const label = timeLabels[time] || time;
         try {
-          const response = await fetch(`../data/a-share/${date}/${time}-weixin.md`);
+          const response = await fetch(`data/a-share/${date}/${time}-weixin.md`);
           if (response.ok) {
             const mdContent = await response.text();
             const { meta, html: bodyHtml } = parseMarkdown(mdContent);
@@ -415,7 +415,7 @@
       content.innerHTML = '<div class="loading">加载中...</div>';
       
       try {
-        const response = await fetch(`../data/a-share/${date}/${time}-weixin.md`);
+        const response = await fetch(`data/a-share/${date}/${time}-weixin.md`);
         if (!response.ok) throw new Error('加载失败');
         
         const mdContent = await response.text();
