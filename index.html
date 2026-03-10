@@ -214,7 +214,42 @@
       color: var(--text-secondary);
       font-size: 13px;
     }
-    
+
+    /* 切换按钮 */
+    .view-toggle {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      padding: 12px;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .toggle-btn {
+      flex: 1;
+      padding: 10px 16px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .toggle-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .toggle-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
     /* 响应式 */
     @media (max-width: 768px) {
       .sidebar {
@@ -239,6 +274,11 @@
     </aside>
     
     <main class="main">
+      <!-- 切换按钮 -->
+      <div class="view-toggle" id="viewToggle" style="display:none;">
+        <button class="toggle-btn active" data-mode="summary" onclick="switchViewMode('summary')">📝 查看汇总</button>
+        <button class="toggle-btn" data-mode="times" onclick="switchViewMode('times')">📊 查看分时</button>
+      </div>
       <div id="content">
         <div class="loading">请选择日期查看点评</div>
       </div>
@@ -252,6 +292,8 @@
     // 动态加载的数据
     let availableDates = [];
     let timePoints = {};
+    let currentViewMode = 'summary'; // 'summary' or 'times'
+    let currentDate = '';
 
     // 时间标签
     const timeLabels = {
@@ -337,32 +379,76 @@
     }
     
     // 加载内容
-    async function loadContent(date) {
+    async function loadContent(date, viewMode = null) {
       const content = document.getElementById('content');
+      const viewToggle = document.getElementById('viewToggle');
       content.innerHTML = '<div class="loading">加载中...</div>';
-      
+
+      currentDate = date;
+
+      // 解析 URL hash 获取 view mode
+      if (viewMode === null) {
+        const hash = window.location.hash;
+        if (hash.includes(':')) {
+          const parts = hash.slice(1).split(':');
+          if (parts[0] === date && parts[1]) {
+            currentViewMode = parts[1];
+          }
+        }
+      } else {
+        currentViewMode = viewMode;
+      }
+
       try {
-        // 优先尝试加载 weixin.md（汇总版）
-        const response = await fetch(`data/a-share/${date}/weixin.md`);
-        
-        if (response.ok) {
-          const mdContent = await response.text();
+        // 检查是否有汇总版 weixin.md
+        const summaryResponse = await fetch(`data/a-share/${date}/weixin.md`);
+        const hasSummary = summaryResponse.ok;
+
+        // 显示/隐藏切换按钮
+        const times = timePoints[date] || [];
+        if (hasSummary && times.length > 0) {
+          viewToggle.style.display = 'flex';
+          updateToggleButtons();
+        } else {
+          viewToggle.style.display = 'none';
+        }
+
+        // 根据模式加载内容
+        if (currentViewMode === 'summary' && hasSummary) {
+          const mdContent = await summaryResponse.text();
           const { html, meta } = parseMarkdown(mdContent);
           renderArticle(meta, html, date);
-          return;
-        }
-        
-        // 如果没有 weixin.md，显示当天可用的时间点
-        const times = timePoints[date] || [];
-        if (times.length > 0) {
+        } else if (times.length > 0) {
           await renderTimePoints(date, times);
-          return;
+        } else if (hasSummary) {
+          // 没有分时数据但有汇总
+          const mdContent = await summaryResponse.text();
+          const { html, meta } = parseMarkdown(mdContent);
+          renderArticle(meta, html, date);
+        } else {
+          throw new Error('暂无点评');
         }
-        
-        throw new Error('暂无点评');
-        
+
+        // 更新 URL hash
+        window.location.hash = `${date}:${currentViewMode}`;
+
       } catch (error) {
         content.innerHTML = `<div class="error">${error.message || '加载失败'}</div>`;
+      }
+    }
+
+    // 更新切换按钮状态
+    function updateToggleButtons() {
+      document.querySelectorAll('.toggle-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.mode === currentViewMode);
+      });
+    }
+
+    // 切换视图模式
+    function switchViewMode(mode) {
+      if (currentDate && mode !== currentViewMode) {
+        currentViewMode = mode;
+        loadContent(currentDate, mode);
       }
     }
     
@@ -575,6 +661,7 @@
     // 暴露全局函数
     window.loadContent = loadContent;
     window.loadTimePoint = loadTimePoint;
+    window.switchViewMode = switchViewMode;
   </script>
 </body>
 </html>
