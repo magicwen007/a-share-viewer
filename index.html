@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A股点评 - 每日盘面分析</title>
+  <title>A股点评</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown.min.css">
   <style>
     :root {
       --bg-primary: #0d1117;
@@ -11,23 +12,13 @@
       --bg-tertiary: #21262d;
       --text-primary: #c9d1d9;
       --text-secondary: #8b949e;
-      --text-muted: #6e7681;
       --accent: #58a6ff;
-      --accent-hover: #79c0ff;
-      --green: #3fb950;
-      --red: #f85149;
-      --yellow: #d29922;
-      --purple: #a371f7;
       --border: #30363d;
-      --card-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      --card-bg: #161b22;
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
       background: var(--bg-primary);
@@ -35,750 +26,525 @@
       line-height: 1.6;
       min-height: 100vh;
     }
-
-    /* Header */
-    .header {
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .header h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .header h1 span {
-      color: var(--accent);
-    }
-
-    /* Main Container */
+    
     .container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* 侧边栏 */
+    .sidebar {
+      width: 280px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border);
+      padding: 20px;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: var(--accent);
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .date-list {
+      list-style: none;
+    }
+    
+    .date-list li {
+      margin-bottom: 8px;
+    }
+    
+    .date-list a {
+      display: block;
+      padding: 12px 16px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.2s;
+      font-size: 14px;
+    }
+    
+    .date-list a:hover {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+    }
+    
+    .date-list a.active {
+      background: var(--accent);
+      color: #fff;
+    }
+    
+    /* 主内容区 */
+    .main {
+      flex: 1;
+      margin-left: 280px;
+      padding: 40px 60px;
       max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
     }
-
-    /* Calendar */
-    .calendar-section {
-      background: var(--bg-secondary);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      border: 1px solid var(--border);
-    }
-
-    .calendar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .calendar-header h2 {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-    }
-
-    .calendar-nav {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .calendar-nav button {
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border);
-      color: var(--text-primary);
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      transition: all 0.2s;
-    }
-
-    .calendar-nav button:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 4px;
-    }
-
-    .calendar-day {
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      background: var(--bg-tertiary);
-      color: var(--text-secondary);
-    }
-
-    .calendar-day:hover {
-      background: var(--accent);
-      color: white;
-    }
-
-    .calendar-day.has-data {
-      background: var(--green);
-      color: white;
-      font-weight: 600;
-    }
-
-    .calendar-day.has-data:hover {
-      opacity: 0.85;
-    }
-
-    .calendar-day.today {
-      border: 2px solid var(--accent);
-    }
-
-    .calendar-day.no-data {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-
-    .calendar-day.other-month {
-      opacity: 0.3;
-    }
-
-    /* Review Card */
-    .review-card {
-      background: var(--bg-secondary);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      overflow: hidden;
-      margin-bottom: 2rem;
-      animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .review-header {
-      background: var(--bg-tertiary);
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .review-header h2 {
-      font-size: 1.2rem;
-      color: var(--text-primary);
-    }
-
-    .review-meta {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-    }
-
-    .review-meta .tag {
-      background: var(--accent);
-      color: white;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-    }
-
-    .review-meta .tag.noon {
-      background: var(--yellow);
-    }
-
-    .review-meta .tag.close {
-      background: var(--purple);
-    }
-
-    .review-content {
-      padding: 1.5rem;
-    }
-
-    .review-content h3 {
-      color: var(--accent);
-      font-size: 1rem;
-      margin: 1.5rem 0 0.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .review-content h3:first-child {
-      margin-top: 0;
-    }
-
-    .review-content p {
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-      text-align: justify;
-    }
-
-    .review-content ul {
-      margin: 0.5rem 0 1rem 1.5rem;
-      color: var(--text-primary);
-    }
-
-    .review-content li {
-      margin: 0.3rem 0;
-    }
-
-    .review-content strong {
-      color: var(--accent);
-    }
-
-    .review-content .disclaimer {
-      margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-style: italic;
-    }
-
-    /* Index Cards */
-    .index-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .index-card {
-      background: var(--bg-tertiary);
-      border-radius: 8px;
-      padding: 1rem;
-      border: 1px solid var(--border);
-    }
-
-    .index-card .name {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.3rem;
-    }
-
-    .index-card .value {
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    .index-card .change {
-      font-size: 0.9rem;
-      margin-top: 0.3rem;
-    }
-
-    .index-card .change.up {
-      color: var(--green);
-    }
-
-    .index-card .change.down {
-      color: var(--red);
-    }
-
-    /* Market Stats */
-    .market-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .stat-card {
-      background: var(--bg-tertiary);
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
-      border: 1px solid var(--border);
-    }
-
-    .stat-card .label {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.3rem;
-    }
-
-    .stat-card .num {
-      font-size: 1.3rem;
-      font-weight: 600;
-    }
-
-    .stat-card .num.up {
-      color: var(--green);
-    }
-
-    .stat-card .num.down {
-      color: var(--red);
-    }
-
-    /* Time Tabs */
-    .time-tabs {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .time-tab {
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      transition: all 0.2s;
-    }
-
-    .time-tab:hover {
-      background: var(--accent);
-      color: white;
-      border-color: var(--accent);
-    }
-
-    .time-tab.active {
-      background: var(--accent);
-      color: white;
-      border-color: var(--accent);
-    }
-
-    /* Empty State */
-    .empty-state {
-      text-align: center;
-      padding: 4rem 2rem;
-      color: var(--text-secondary);
-    }
-
-    .empty-state svg {
-      width: 64px;
-      height: 64px;
-      margin-bottom: 1rem;
-      opacity: 0.5;
-    }
-
-    .empty-state p {
-      font-size: 1.1rem;
-    }
-
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 2rem;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      border-top: 1px solid var(--border);
-      margin-top: 3rem;
-    }
-
-    /* Loading */
+    
     .loading {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 3rem;
+      text-align: center;
+      padding: 60px;
+      color: var(--text-secondary);
     }
-
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid var(--border);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
+    
+    .error {
+      text-align: center;
+      padding: 60px;
+      color: #f85149;
     }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    
+    /* 文章样式 */
+    .article {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 40px;
+      border: 1px solid var(--border);
     }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      .container {
-        padding: 1rem;
+    
+    .article-header {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .article-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+    
+    .article-meta {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    
+    .article-banner {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+    
+    .article-digest {
+      font-size: 16px;
+      color: var(--text-secondary);
+      padding: 16px;
+      background: var(--bg-tertiary);
+      border-radius: 8px;
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+    
+    /* Markdown 内容样式覆盖 */
+    .markdown-body {
+      background: transparent !important;
+      color: var(--text-primary) !important;
+      font-size: 16px !important;
+      line-height: 1.8 !important;
+    }
+    
+    .markdown-body h1, 
+    .markdown-body h2, 
+    .markdown-body h3 {
+      color: var(--text-primary) !important;
+      border-bottom: 1px solid var(--border) !important;
+      padding-bottom: 8px !important;
+      margin-top: 30px !important;
+    }
+    
+    .markdown-body p {
+      margin-bottom: 16px !important;
+    }
+    
+    .markdown-body strong {
+      color: var(--accent) !important;
+    }
+    
+    .markdown-body ul, 
+    .markdown-body ol {
+      padding-left: 24px !important;
+      margin-bottom: 16px !important;
+    }
+    
+    .markdown-body li {
+      margin-bottom: 8px !important;
+    }
+    
+    .markdown-body a {
+      color: var(--accent) !important;
+    }
+    
+    .markdown-body blockquote {
+      border-left: 4px solid var(--accent) !important;
+      background: var(--bg-tertiary) !important;
+      padding: 12px 16px !important;
+      margin: 16px 0 !important;
+      color: var(--text-secondary) !important;
+    }
+    
+    .markdown-body code {
+      background: var(--bg-tertiary) !important;
+      padding: 2px 6px !important;
+      border-radius: 4px !important;
+      font-size: 14px !important;
+    }
+    
+    .markdown-body hr {
+      border-color: var(--border) !important;
+      margin: 24px 0 !important;
+    }
+    
+    .markdown-body em {
+      color: var(--text-secondary) !important;
+    }
+    
+    .article-footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+    
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
       }
-
-      .header {
-        padding: 1rem;
-      }
-
-      .calendar-section {
-        padding: 1rem;
-      }
-
-      .market-stats {
-        grid-template-columns: repeat(2, 1fr);
+      .main {
+        margin-left: 0;
+        padding: 20px;
       }
     }
   </style>
 </head>
 <body>
-  <header class="header">
-    <h1>📈 <span>A股</span>点评</h1>
-  </header>
-
-  <main class="container">
-    <!-- Calendar -->
-    <section class="calendar-section">
-      <div class="calendar-header">
-        <h2 id="calendarTitle">2026年3月</h2>
-        <div class="calendar-nav">
-          <button onclick="changeMonth(-1)">← 上月</button>
-          <button onclick="changeMonth(1)">下月 →</button>
-        </div>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>📅 日期导航</h2>
+      <ul class="date-list" id="dateList">
+        <li><a href="#" class="loading">加载中...</a></li>
+      </ul>
+    </aside>
+    
+    <main class="main">
+      <div id="content">
+        <div class="loading">请选择日期查看点评</div>
       </div>
-      <div class="calendar-grid" id="calendarGrid">
-        <div class="calendar-day">日</div>
-        <div class="calendar-day">一</div>
-        <div class="calendar-day">二</div>
-        <div class="calendar-day">三</div>
-        <div class="calendar-day">四</div>
-        <div class="calendar-day">五</div>
-        <div class="calendar-day">六</div>
-      </div>
-    </section>
-
-    <!-- Review Content -->
-    <div id="reviewContainer"></div>
-  </main>
-
-  <footer class="footer">
-    <p>A股点评 · 每日盘面分析 · 仅供参考</p>
-  </footer>
+    </main>
+  </div>
 
   <script>
-    // Data config
-    const DATA_PATH = '../data/a-share/';
-    let currentYear = 2026;
-    let currentMonth = 3;
-    let selectedDate = null;
-    let availableDates = {};
-
-    // Initialize
-    async function init() {
-      await loadAvailableDates();
-      renderCalendar();
-      // Load today's data if available
-      const today = new Date();
-      selectDate(today.getFullYear(), today.getMonth() + 1, today.getDate());
+    // 可用的日期目录（静态配置）
+    const availableDates = [
+      '2026-03-10',
+      '2026-03-09',
+      '2026-03-06',
+      '2026-03-05'
+    ];
+    
+    // 每个日期可用的时间点文件
+    const timePoints = {
+      '2026-03-10': ['1000', '1200'],
+      '2026-03-09': ['1000', '1200', '1400', '1500'],
+      '2026-03-06': ['1000', '1400', '1500'],
+      '2026-03-05': ['1000', '1500']
+    };
+    
+    const timeLabels = {
+      '1000': '早盘',
+      '1200': '午盘',
+      '1400': '午后',
+      '1500': '收盘'
+    };
+    
+    // 日期格式化
+    function formatDate(dateStr) {
+      const d = new Date(dateStr);
+      const month = d.getMonth() + 1;
+      const day = d.getDate();
+      const weekday = ['日', '一', '二', '三', '四', '五', '六'][d.getDay()];
+      return `${month}月${day}日 周${weekday}`;
     }
-
-    // Load available dates from data directory
-    async function loadAvailableDates() {
-      // Known dates from the data directory
-      const knownDates = [
-        '2026-03-05', '2026-03-06', '2026-03-09', '2026-03-10'
-      ];
-
-      for (const date of knownDates) {
-        availableDates[date] = {};
-
-        // Check each time slot
-        const times = ['1000', '1200', '1400', '1500'];
-        for (const time of times) {
-          try {
-            const response = await fetch(`${DATA_PATH}/${date}/${time}-weixin.md`);
-            if (response.ok) {
-              availableDates[date][time] = true;
-            }
-          } catch (e) {
-            // Try JSON data
-            try {
-              const jsonRes = await fetch(`${DATA_PATH}/${date}/${time}-data.json`);
-              if (jsonRes.ok) {
-                availableDates[date][time] = true;
-              }
-            } catch (e2) {
-              // Ignore
-            }
-          }
-        }
-      }
-    }
-
-    // Render calendar
-    function renderCalendar() {
-      const grid = document.getElementById('calendarGrid');
-      const title = document.getElementById('calendarTitle');
-
-      title.textContent = `${currentYear}年${currentMonth}月`;
-
-      // Clear existing days (keep headers)
-      while (grid.children.length > 7) {
-        grid.removeChild(grid.lastChild);
-      }
-
-      const firstDay = new Date(currentYear, currentMonth - 1, 1).getDay();
-      const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
-      const today = new Date();
-
-      // Previous month days
-      const prevMonthDays = new Date(currentYear, currentMonth - 1, 0).getDate();
-      for (let i = firstDay - 1; i >= 0; i--) {
-        const day = document.createElement('div');
-        day.className = 'calendar-day other-month';
-        day.textContent = prevMonthDays - i;
-        grid.appendChild(day);
-      }
-
-      // Current month days
-      for (let day = 1; day <= daysInMonth; day++) {
-        const dateStr = `${currentYear}-${String(currentMonth).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-        const el = document.createElement('div');
-        el.className = 'calendar-day';
-
-        if (availableDates[dateStr] && Object.keys(availableDates[dateStr]).length > 0) {
-          el.classList.add('has-data');
-        }
-
-        if (today.getFullYear() === currentYear &&
-            today.getMonth() + 1 === currentMonth &&
-            today.getDate() === day) {
-          el.classList.add('today');
-        }
-
-        el.textContent = day;
-        el.onclick = () => selectDate(currentYear, currentMonth, day);
-        grid.appendChild(el);
-      }
-
-      // Next month days
-      const remaining = 42 - (firstDay + daysInMonth);
-      for (let i = 1; i <= remaining; i++) {
-        const day = document.createElement('div');
-        day.className = 'calendar-day other-month';
-        day.textContent = i;
-        grid.appendChild(day);
-      }
-    }
-
-    // Change month
-    function changeMonth(delta) {
-      currentMonth += delta;
-      if (currentMonth > 12) {
-        currentMonth = 1;
-        currentYear++;
-      } else if (currentMonth < 1) {
-        currentMonth = 12;
-        currentYear--;
-      }
-      renderCalendar();
-    }
-
-    // Select date and load data
-    async function selectDate(year, month, day) {
-      const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-      selectedDate = dateStr;
-
-      // Update calendar selection
-      document.querySelectorAll('.calendar-day').forEach(el => {
-        el.style.border = 'none';
+    
+    // 渲染侧边栏
+    function renderSidebar() {
+      const list = document.getElementById('dateList');
+      list.innerHTML = availableDates.map(date => {
+        const label = formatDate(date);
+        return `<li><a href="#${date}" data-date="${date}">${label}</a></li>`;
+      }).join('');
+      
+      // 绑定点击事件
+      list.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const date = link.dataset.date;
+          loadContent(date);
+          
+          // 更新选中状态
+          list.querySelectorAll('a').forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        });
       });
-
-      const container = document.getElementById('reviewContainer');
-      container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
-
-      // Load data for this date
-      await loadReviewData(dateStr);
-    }
-
-    // Load review data
-    async function loadReviewData(dateStr) {
-      const container = document.getElementById('reviewContainer');
-      const dateData = availableDates[dateStr];
-
-      if (!dateData || Object.keys(dateData).length === 0) {
-        container.innerHTML = `
-          <div class="empty-state">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 6v6l4 2"/>
-            </svg>
-            <p>${dateStr} 暂无点评数据</p>
-          </div>
-        `;
-        return;
-      }
-
-      // Get all available times for this date
-      const times = Object.keys(dateData).sort();
-
-      if (times.length === 1) {
-        // Single time - show directly
-        await loadSingleReview(dateStr, times[0], container);
-      } else {
-        // Multiple times - show tabs
-        await loadMultipleReviews(dateStr, times, container);
-      }
-    }
-
-    // Load single review
-    async function loadSingleReview(dateStr, time, container) {
-      try {
-        const response = await fetch(`${DATA_PATH}/${dateStr}/${time}-weixin.md`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch');
+      
+      // URL hash 加载
+      if (window.location.hash) {
+        const date = window.location.hash.slice(1);
+        if (availableDates.includes(date)) {
+          const link = list.querySelector(`[data-date="${date}"]`);
+          if (link) link.classList.add('active');
+          loadContent(date);
         }
-        const content = await response.text();
-        renderReview(dateStr, time, content, container);
-      } catch (e) {
-        container.innerHTML = `
-          <div class="empty-state">
-            <p>加载失败</p>
-          </div>
-        `;
       }
     }
-
-    // Load multiple reviews with tabs
-    async function loadMultipleReviews(dateStr, times, container) {
-      const reviews = {};
-
+    
+    // 加载内容
+    async function loadContent(date) {
+      const content = document.getElementById('content');
+      content.innerHTML = '<div class="loading">加载中...</div>';
+      
+      try {
+        // 优先尝试加载 weixin.md（汇总版）
+        const response = await fetch(`data/a-share/${date}/weixin.md`);
+        
+        if (response.ok) {
+          const mdContent = await response.text();
+          const { html, meta } = parseMarkdown(mdContent);
+          renderArticle(meta, html, date);
+          return;
+        }
+        
+        // 如果没有 weixin.md，显示当天可用的时间点
+        const times = timePoints[date] || [];
+        if (times.length > 0) {
+          await renderTimePoints(date, times);
+          return;
+        }
+        
+        throw new Error('暂无点评');
+        
+      } catch (error) {
+        content.innerHTML = `<div class="error">${error.message || '加载失败'}</div>`;
+      }
+    }
+    
+    // 渲染时间点列表
+    async function renderTimePoints(date, times) {
+      const content = document.getElementById('content');
+      
+      let html = `
+        <article class="article">
+          <div class="article-header">
+            <h1 class="article-title">${formatDate(date)} 点评</h1>
+            <div class="article-meta">点击下方时间查看详情</div>
+          </div>
+          <div class="time-points">
+      `;
+      
       for (const time of times) {
+        const label = timeLabels[time] || time;
         try {
-          const response = await fetch(`${DATA_PATH}/${dateStr}/${time}-weixin.md`);
+          const response = await fetch(`data/a-share/${date}/${time}-weixin.md`);
           if (response.ok) {
-            reviews[time] = await response.text();
+            const mdContent = await response.text();
+            const { meta, html: bodyHtml } = parseMarkdown(mdContent);
+            const title = meta.title || `${label}点评`;
+            const digest = meta.digest || '';
+            
+            html += `
+              <div class="time-card" onclick="loadTimePoint('${date}', '${time}')">
+                <div class="time-card-header">
+                  <span class="time-label">${label}</span>
+                  <span class="time-value">${time.slice(0,2)}:${time.slice(2)}</span>
+                </div>
+                ${digest ? `<div class="time-digest">${digest.slice(0,100)}...</div>` : ''}
+              </div>
+            `;
           }
         } catch (e) {
-          // Ignore
+          console.error(e);
         }
       }
-
-      const timeLabels = {
-        '1000': '早盘',
-        '1200': '午盘',
-        '1400': '午后',
-        '1500': '收盘'
-      };
-
-      let html = '<div class="time-tabs">';
-      times.forEach((time, idx) => {
-        const label = timeLabels[time] || time;
-        html += `<div class="time-tab ${idx === 0 ? 'active' : ''}"
-                     onclick="switchTimeTab('${time}')"
-                     data-time="${time}">${label}</div>`;
-      });
-      html += '</div>';
-
-      // Render first review
-      const firstTime = times[0];
-      container.innerHTML = html + '<div id="reviewContent"></div>';
-      renderReviewContent(firstTime, reviews[firstTime]);
-    }
-
-    // Switch time tab
-    function switchTimeTab(time) {
-      document.querySelectorAll('.time-tab').forEach(el => {
-        el.classList.toggle('active', el.dataset.time === time);
-      });
-
-      const dateStr = selectedDate;
-      fetch(`${DATA_PATH}/${dateStr}/${time}-weixin.md`)
-        .then(r => r.text())
-        .then(content => renderReviewContent(time, content));
-    }
-
-    // Render review content
-    function renderReviewContent(time, content) {
-      const container = document.getElementById('reviewContent');
-      if (!container) return;
-
-      const dateStr = selectedDate;
-      renderReview(dateStr, time, content, container);
-    }
-
-    // Render review card
-    function renderReview(dateStr, time, content, container) {
-      const timeLabels = {
-        '1000': '早盘',
-        '1200': '午盘',
-        '1400': '午后',
-        '1500': '收盘'
-      };
-
-      const label = timeLabels[time] || time;
-      const isNoon = time === '1200';
-      const isClose = time === '1500';
-
-      // Parse markdown content
-      const parsed = parseMarkdown(content);
-
-      container.innerHTML = `
-        <article class="review-card">
-          <header class="review-header">
-            <h2>${parsed.title}</h2>
-            <div class="review-meta">
-              <span class="tag ${isNoon ? 'noon' : isClose ? 'close' : ''}">${label}</span>
-              <span>${dateStr}</span>
-            </div>
-          </header>
-          <div class="review-content">
-            ${parsed.content}
+      
+      html += `
           </div>
         </article>
+        <style>
+          .time-points { display: grid; gap: 16px; }
+          .time-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+          }
+          .time-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+          }
+          .time-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+          .time-label { font-size: 18px; font-weight: 600; }
+          .time-value { color: var(--text-secondary); font-size: 14px; }
+          .time-digest { margin-top: 12px; color: var(--text-secondary); font-size: 14px; }
+        </style>
       `;
+      
+      content.innerHTML = html;
     }
-
-    // Simple markdown parser
-    function parseMarkdown(content) {
-      // Extract title
-      let title = '盘面点评';
-      const titleMatch = content.match(/^#\s+(.+)$/m);
-      if (titleMatch) {
-        title = titleMatch[1];
+    
+    // 加载单个时间点
+    async function loadTimePoint(date, time) {
+      const content = document.getElementById('content');
+      content.innerHTML = '<div class="loading">加载中...</div>';
+      
+      try {
+        const response = await fetch(`data/a-share/${date}/${time}-weixin.md`);
+        if (!response.ok) throw new Error('加载失败');
+        
+        const mdContent = await response.text();
+        const { html: bodyHtml, meta } = parseMarkdown(mdContent);
+        
+        const label = timeLabels[time] || time;
+        const title = meta.title || `${formatDate(date)} ${label}点评`;
+        
+        content.innerHTML = `
+          <article class="article">
+            <div class="article-header">
+              <h1 class="article-title">${title}</h1>
+              <div class="article-meta"><a href="#" onclick="loadContent('${date}'); return false;">← 返回</a></div>
+            </div>
+            <div class="markdown-body">${simpleMarkdown(bodyHtml)}</div>
+          </article>
+        `;
+      } catch (error) {
+        content.innerHTML = `<div class="error">${error.message || '加载失败'}</div>`;
       }
-
-      // Convert markdown to HTML
-      let html = content
-        // Remove title
-        .replace(/^#\s+.+$/gm, '')
-        // Headings
-        .replace(/^##\s+(.+)$/gm, '<h3>$1</h3>')
-        // Bold
-        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-        // Lists
-        .replace(/^-\s+(.+)$/gm, '<li>$1</li>')
-        // Horizontal rule
-        .replace(/^---$/gm, '<hr style="border:none;border-top:1px solid var(--border);margin:2rem 0;">')
-        // Paragraphs
-        .replace(/\n\n/g, '</p><p>')
-        // Wrap lists
-        .replace(/(<li>.+<\/li>)+/g, '<ul>$&</ul>')
-        // Italic
-        .replace(/\*([^*]+)\*/g, '<em>$1</em>');
-
-      // Wrap in paragraphs
+    }
+    
+    // 解析 Markdown（简单的前matter解析）
+    function parseMarkdown(content) {
+      let meta = {};
+      let body = content;
+      
+      // 解析 frontmatter
+      if (content.startsWith('---')) {
+        const endIndex = content.indexOf('---', 3);
+        if (endIndex > 0) {
+          const frontmatter = content.slice(3, endIndex).trim();
+          body = content.slice(endIndex + 3).trim();
+          
+          // 解析 YAML 风格
+          frontmatter.split('\n').forEach(line => {
+            const colonIndex = line.indexOf(':');
+            if (colonIndex > 0) {
+              const key = line.slice(0, colonIndex).trim();
+              const value = line.slice(colonIndex + 1).trim().replace(/^["']|["']$/g, '');
+              meta[key] = value;
+            }
+          });
+        }
+      }
+      
+      return { html: body, meta };
+    }
+    
+    // 渲染文章
+    function renderArticle(meta, body, date) {
+      const content = document.getElementById('content');
+      
+      const title = meta.title || formatDate(date);
+      const author = meta.author || '我是舵手';
+      const digest = meta.digest || '';
+      const banner = meta.banner || '';
+      
+      let html = `
+        <article class="article">
+          <div class="article-header">
+            <h1 class="article-title">${title}</h1>
+            <div class="article-meta">作者: ${author}</div>
+          </div>
+      `;
+      
+      if (banner) {
+        html += `<img class="article-banner" src="${banner}" alt="封面">`;
+      }
+      
+      if (digest) {
+        html += `<div class="article-digest">${digest}</div>`;
+      }
+      
+      // 简单转换 Markdown 到 HTML
+      const bodyHtml = simpleMarkdown(body);
+      html += `<div class="markdown-body">${bodyHtml}</div>`;
+      
+      html += `<div class="article-footer">*本文仅供参考，不构成投资建议*</div>`;
+      html += `</article>`;
+      
+      content.innerHTML = html;
+    }
+    
+    // 简单 Markdown 转换
+    function simpleMarkdown(text) {
+      let html = text;
+      
+      // 转义 HTML
+      html = html.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      
+      // 标题
+      html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+      html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+      html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+      
+      // 加粗
+      html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      
+      // 斜体
+      html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      
+      // 列表
+      html = html.replace(/^\- (.+)$/gm, '<li>$1</li>');
+      html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+      
+      // 数字列表
+      html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+      
+      // 段落
+      html = html.replace(/\n\n/g, '</p><p>');
       html = '<p>' + html + '</p>';
-
-      // Clean up
+      
+      // 清理空段落
       html = html.replace(/<p><\/p>/g, '');
-      html = html.replace(/<p>(<h3>)/g, '$1');
-      html = html.replace(/(<\/h3>)<\/p>/g, '$1');
+      html = html.replace(/<p>(<h[123]>)/g, '$1');
+      html = html.replace(/(<\/h[123]>)<\/p>/g, '$1');
       html = html.replace(/<p>(<ul>)/g, '$1');
       html = html.replace(/(<\/ul>)<\/p>/g, '$1');
-      html = html.replace(/<p>(<hr)/g, '$1');
-      html = html.replace(/(<hr[^>]*>)<\/p>/g, '$1');
-
-      return { title, content: html };
+      
+      return html;
     }
-
-    // Start
-    init();
+    
+    // 初始化
+    renderSidebar();
+    
+    // 暴露全局函数
+    window.loadContent = loadContent;
+    window.loadTimePoint = loadTimePoint;
   </script>
 </body>
 </html>
