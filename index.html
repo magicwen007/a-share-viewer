@@ -249,21 +249,51 @@
     // 数据路径配置
     const DATA_BASE_PATH = 'data/a-share';
 
-    // 静态数据
-    const availableDates = ['2026-03-10', '2026-03-09', '2026-03-06', '2026-03-05'];
-    const timePoints = {
-      '2026-03-10': ['1000', '1200', '1400'],
-      '2026-03-09': ['1000', '1200', '1400', '1500'],
-      '2026-03-06': ['1000', '1400', '1500'],
-      '2026-03-05': ['1000', '1500']
-    };
+    // 动态加载的数据
+    let availableDates = [];
+    let timePoints = {};
 
+    // 时间标签
     const timeLabels = {
       '1000': '早盘',
       '1200': '午盘',
       '1400': '午后',
       '1500': '收盘'
     };
+
+    // 备用数据
+    const fallbackData = {
+      dates: [
+        { date: '2026-03-10', times: ['1000', '1200', '1400', '1500'] },
+        { date: '2026-03-09', times: ['1000', '1200', '1400', '1500'] },
+        { date: '2026-03-06', times: ['1000', '1400', '1500'] },
+        { date: '2026-03-05', times: ['1000', '1500'] }
+      ]
+    };
+
+    // 加载 manifest.json
+    async function loadManifest() {
+      try {
+        const response = await fetch(`${DATA_BASE_PATH}/manifest.json`);
+        if (!response.ok) throw new Error('Failed to load manifest');
+        const data = await response.json();
+
+        availableDates = data.dates.map(d => d.date);
+        timePoints = {};
+        data.dates.forEach(d => {
+          timePoints[d.date] = d.times;
+        });
+
+        console.log('Loaded manifest:', { availableDates, timePoints });
+      } catch (error) {
+        console.error('Load manifest failed, using fallback:', error);
+        // 使用备用数据
+        availableDates = fallbackData.dates.map(d => d.date);
+        fallbackData.dates.forEach(d => {
+          timePoints[d.date] = d.times;
+        });
+      }
+    }
 
     // 日期格式化
     function formatDate(dateStr) {
@@ -536,7 +566,8 @@
     }
     
     // 初始化
-    function init() {
+    async function init() {
+      await loadManifest();
       renderSidebar();
     }
     init();
