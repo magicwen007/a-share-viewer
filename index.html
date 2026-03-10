@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A股点评</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown.min.css">
+  <style>
+    :root {
+      --bg-primary: #0d1117;
+      --bg-secondary: #161b22;
+      --bg-tertiary: #21262d;
+      --text-primary: #c9d1d9;
+      --text-secondary: #8b949e;
+      --accent: #58a6ff;
+      --border: #30363d;
+      --card-bg: #161b22;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* 侧边栏 */
+    .sidebar {
+      width: 280px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border);
+      padding: 20px;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    
+    .sidebar h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: var(--accent);
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .date-list {
+      list-style: none;
+    }
+    
+    .date-list li {
+      margin-bottom: 8px;
+    }
+    
+    .date-list a {
+      display: block;
+      padding: 12px 16px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.2s;
+      font-size: 14px;
+    }
+    
+    .date-list a:hover {
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+    }
+    
+    .date-list a.active {
+      background: var(--accent);
+      color: #fff;
+    }
+    
+    /* 主内容区 */
+    .main {
+      flex: 1;
+      margin-left: 280px;
+      padding: 40px 60px;
+      max-width: 900px;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 60px;
+      color: var(--text-secondary);
+    }
+    
+    .error {
+      text-align: center;
+      padding: 60px;
+      color: #f85149;
+    }
+    
+    /* 文章样式 */
+    .article {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 40px;
+      border: 1px solid var(--border);
+    }
+    
+    .article-header {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .article-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+    
+    .article-meta {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    
+    .article-banner {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+    
+    .article-digest {
+      font-size: 16px;
+      color: var(--text-secondary);
+      padding: 16px;
+      background: var(--bg-tertiary);
+      border-radius: 8px;
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+    
+    /* Markdown 内容样式覆盖 */
+    .markdown-body {
+      background: transparent !important;
+      color: var(--text-primary) !important;
+      font-size: 16px !important;
+      line-height: 1.8 !important;
+    }
+    
+    .markdown-body h1, 
+    .markdown-body h2, 
+    .markdown-body h3 {
+      color: var(--text-primary) !important;
+      border-bottom: 1px solid var(--border) !important;
+      padding-bottom: 8px !important;
+      margin-top: 30px !important;
+    }
+    
+    .markdown-body p {
+      margin-bottom: 16px !important;
+    }
+    
+    .markdown-body strong {
+      color: var(--accent) !important;
+    }
+    
+    .markdown-body ul, 
+    .markdown-body ol {
+      padding-left: 24px !important;
+      margin-bottom: 16px !important;
+    }
+    
+    .markdown-body li {
+      margin-bottom: 8px !important;
+    }
+    
+    .markdown-body a {
+      color: var(--accent) !important;
+    }
+    
+    .markdown-body blockquote {
+      border-left: 4px solid var(--accent) !important;
+      background: var(--bg-tertiary) !important;
+      padding: 12px 16px !important;
+      margin: 16px 0 !important;
+      color: var(--text-secondary) !important;
+    }
+    
+    .markdown-body code {
+      background: var(--bg-tertiary) !important;
+      padding: 2px 6px !important;
+      border-radius: 4px !important;
+      font-size: 14px !important;
+    }
+    
+    .markdown-body hr {
+      border-color: var(--border) !important;
+      margin: 24px 0 !important;
+    }
+    
+    .markdown-body em {
+      color: var(--text-secondary) !important;
+    }
+    
+    .article-footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+    
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+      }
+      .main {
+        margin-left: 0;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>📅 日期导航</h2>
+      <ul class="date-list" id="dateList">
+        <li><a href="#" class="loading">加载中...</a></li>
+      </ul>
+    </aside>
+    
+    <main class="main">
+      <div id="content">
+        <div class="loading">请选择日期查看点评</div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // 可用的日期目录（静态配置）
+    const availableDates = [
+      '2026-03-10',
+      '2026-03-09',
+      '2026-03-06',
+      '2026-03-05'
+    ];
+    
+    // 每个日期可用的时间点文件
+    const timePoints = {
+      '2026-03-10': ['1000', '1200'],
+      '2026-03-09': ['1000', '1200', '1400', '1500'],
+      '2026-03-06': ['1000', '1400', '1500'],
+      '2026-03-05': ['1000', '1500']
+    };
+    
+    const timeLabels = {
+      '1000': '早盘',
+      '1200': '午盘',
+      '1400': '午后',
+      '1500': '收盘'
+    };
+    
+    // 日期格式化
+    function formatDate(dateStr) {
+      const d = new Date(dateStr);
+      const month = d.getMonth() + 1;
+      const day = d.getDate();
+      const weekday = ['日', '一', '二', '三', '四', '五', '六'][d.getDay()];
+      return `${month}月${day}日 周${weekday}`;
+    }
+    
+    // 渲染侧边栏
+    function renderSidebar() {
+      const list = document.getElementById('dateList');
+      list.innerHTML = availableDates.map(date => {
+        const label = formatDate(date);
+        return `<li><a href="#${date}" data-date="${date}">${label}</a></li>`;
+      }).join('');
+      
+      // 绑定点击事件
+      list.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const date = link.dataset.date;
+          loadContent(date);
+          
+          // 更新选中状态
+          list.querySelectorAll('a').forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        });
+      });
+      
+      // URL hash 加载
+      if (window.location.hash) {
+        const date = window.location.hash.slice(1);
+        if (availableDates.includes(date)) {
+          const link = list.querySelector(`[data-date="${date}"]`);
+          if (link) link.classList.add('active');
+          loadContent(date);
+        }
+      }
+    }
+    
+    // 加载内容
+    async function loadContent(date) {
+      const content = document.getElementById('content');
+      content.innerHTML = '<div class="loading">加载中...</div>';
+      
+      try {
+        // 优先尝试加载 weixin.md（汇总版）
+        const response = await fetch(`../data/a-share/${date}/weixin.md`);
+        
+        if (response.ok) {
+          const mdContent = await response.text();
+          const { html, meta } = parseMarkdown(mdContent);
+          renderArticle(meta, html, date);
+          return;
+        }
+        
+        // 如果没有 weixin.md，显示当天可用的时间点
+        const times = timePoints[date] || [];
+        if (times.length > 0) {
+          await renderTimePoints(date, times);
+          return;
+        }
+        
+        throw new Error('暂无点评');
+        
+      } catch (error) {
+        content.innerHTML = `<div class="error">${error.message || '加载失败'}</div>`;
+      }
+    }
+    
+    // 渲染时间点列表
+    async function renderTimePoints(date, times) {
+      const content = document.getElementById('content');
+      
+      let html = `
+        <article class="article">
+          <div class="article-header">
+            <h1 class="article-title">${formatDate(date)} 点评</h1>
+            <div class="article-meta">点击下方时间查看详情</div>
+          </div>
+          <div class="time-points">
+      `;
+      
+      for (const time of times) {
+        const label = timeLabels[time] || time;
+        try {
+          const response = await fetch(`../data/a-share/${date}/${time}-weixin.md`);
+          if (response.ok) {
+            const mdContent = await response.text();
+            const { meta, html: bodyHtml } = parseMarkdown(mdContent);
+            const title = meta.title || `${label}点评`;
+            const digest = meta.digest || '';
+            
+            html += `
+              <div class="time-card" onclick="loadTimePoint('${date}', '${time}')">
+                <div class="time-card-header">
+                  <span class="time-label">${label}</span>
+                  <span class="time-value">${time.slice(0,2)}:${time.slice(2)}</span>
+                </div>
+                ${digest ? `<div class="time-digest">${digest.slice(0,100)}...</div>` : ''}
+              </div>
+            `;
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+      
+      html += `
+          </div>
+        </article>
+        <style>
+          .time-points { display: grid; gap: 16px; }
+          .time-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+          }
+          .time-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+          }
+          .time-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+          .time-label { font-size: 18px; font-weight: 600; }
+          .time-value { color: var(--text-secondary); font-size: 14px; }
+          .time-digest { margin-top: 12px; color: var(--text-secondary); font-size: 14px; }
+        </style>
+      `;
+      
+      content.innerHTML = html;
+    }
+    
+    // 加载单个时间点
+    async function loadTimePoint(date, time) {
+      const content = document.getElementById('content');
+      content.innerHTML = '<div class="loading">加载中...</div>';
+      
+      try {
+        const response = await fetch(`../data/a-share/${date}/${time}-weixin.md`);
+        if (!response.ok) throw new Error('加载失败');
+        
+        const mdContent = await response.text();
+        const { html: bodyHtml, meta } = parseMarkdown(mdContent);
+        
+        const label = timeLabels[time] || time;
+        const title = meta.title || `${formatDate(date)} ${label}点评`;
+        
+        content.innerHTML = `
+          <article class="article">
+            <div class="article-header">
+              <h1 class="article-title">${title}</h1>
+              <div class="article-meta"><a href="#" onclick="loadContent('${date}'); return false;">← 返回</a></div>
+            </div>
+            <div class="markdown-body">${simpleMarkdown(bodyHtml)}</div>
+          </article>
+        `;
+      } catch (error) {
+        content.innerHTML = `<div class="error">${error.message || '加载失败'}</div>`;
+      }
+    }
+    
+    // 解析 Markdown（简单的前matter解析）
+    function parseMarkdown(content) {
+      let meta = {};
+      let body = content;
+      
+      // 解析 frontmatter
+      if (content.startsWith('---')) {
+        const endIndex = content.indexOf('---', 3);
+        if (endIndex > 0) {
+          const frontmatter = content.slice(3, endIndex).trim();
+          body = content.slice(endIndex + 3).trim();
+          
+          // 解析 YAML 风格
+          frontmatter.split('\n').forEach(line => {
+            const colonIndex = line.indexOf(':');
+            if (colonIndex > 0) {
+              const key = line.slice(0, colonIndex).trim();
+              const value = line.slice(colonIndex + 1).trim().replace(/^["']|["']$/g, '');
+              meta[key] = value;
+            }
+          });
+        }
+      }
+      
+      return { html: body, meta };
+    }
+    
+    // 渲染文章
+    function renderArticle(meta, body, date) {
+      const content = document.getElementById('content');
+      
+      const title = meta.title || formatDate(date);
+      const author = meta.author || '我是舵手';
+      const digest = meta.digest || '';
+      const banner = meta.banner || '';
+      
+      let html = `
+        <article class="article">
+          <div class="article-header">
+            <h1 class="article-title">${title}</h1>
+            <div class="article-meta">作者: ${author}</div>
+          </div>
+      `;
+      
+      if (banner) {
+        html += `<img class="article-banner" src="${banner}" alt="封面">`;
+      }
+      
+      if (digest) {
+        html += `<div class="article-digest">${digest}</div>`;
+      }
+      
+      // 简单转换 Markdown 到 HTML
+      const bodyHtml = simpleMarkdown(body);
+      html += `<div class="markdown-body">${bodyHtml}</div>`;
+      
+      html += `<div class="article-footer">*本文仅供参考，不构成投资建议*</div>`;
+      html += `</article>`;
+      
+      content.innerHTML = html;
+    }
+    
+    // 简单 Markdown 转换
+    function simpleMarkdown(text) {
+      let html = text;
+      
+      // 转义 HTML
+      html = html.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      
+      // 标题
+      html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+      html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+      html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+      
+      // 加粗
+      html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      
+      // 斜体
+      html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      
+      // 列表
+      html = html.replace(/^\- (.+)$/gm, '<li>$1</li>');
+      html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+      
+      // 数字列表
+      html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+      
+      // 段落
+      html = html.replace(/\n\n/g, '</p><p>');
+      html = '<p>' + html + '</p>';
+      
+      // 清理空段落
+      html = html.replace(/<p><\/p>/g, '');
+      html = html.replace(/<p>(<h[123]>)/g, '$1');
+      html = html.replace(/(<\/h[123]>)<\/p>/g, '$1');
+      html = html.replace(/<p>(<ul>)/g, '$1');
+      html = html.replace(/(<\/ul>)<\/p>/g, '$1');
+      
+      return html;
+    }
+    
+    // 初始化
+    renderSidebar();
+    
+    // 暴露全局函数
+    window.loadContent = loadContent;
+    window.loadTimePoint = loadTimePoint;
+  </script>
+</body>
+</html>
