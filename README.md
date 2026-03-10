@@ -1,30 +1,37 @@
-# A股点评 Viewer
+# A股点评可视化网站
 
-每日A股盘面分析可视化网站。
+博客风格的 A股每日点评展示网站。
 
 ## 功能
 
-- 📅 日历导航 - 浏览历史点评日期
-- 📈 分时点评 - 查看早盘、午盘、午后、收盘点评
-- 📊 数据展示 - 指数、涨跌停、板块数据
-- 🔍 历史查询 - 回溯历史盘面分析
+- 📅 日期导航
+- 📊 分时点评（早盘/午盘/午后/收盘）
+- 📝 汇总点评
+- 🔄 自动更新
+- 📖 RSS 订阅
 
-## 数据来源
+## 链接
 
-数据来自 `../data/a-share/` 目录
+- **网站**：https://magicwen007.github.io/a-share-viewer/
+- **RSS**：https://magicwen007.github.io/a-share-viewer/rss.xml
 
-## 本地运行
+## 数据
 
-```bash
-# 使用 Python 本地服务器
-python3 -m http.server 8080
+数据保存在 `data/a-share/` 目录，按日期组织：
 
-# 或使用 PHP
-php -S localhost:8080
+```
+data/a-share/YYYY-MM-DD/
+├── 1000-weixin.md   # 早盘
+├── 1200-weixin.md  # 午盘
+├── 1400-weixin.md  # 午后
+├── 1500-weixin.md  # 收盘
+└── weixin.md       # 汇总
 ```
 
-然后访问 http://localhost:8080
+## 开发
 
-## 部署
-
-已部署到 GitHub Pages: https://your-username.github.io/a-share-viewer
+```bash
+# 本地运行
+cd a-share-viewer
+python3 -m http.server 8080
+```
