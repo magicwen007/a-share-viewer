@@ -21,37 +21,9 @@ jobs:
           python3 << 'EOF'
           import json
           from datetime import datetime
-          from pathlib import Path
 
           with open('data/a-share/manifest.json') as f:
               data = json.load(f)
-
-          def get_description(date):
-              """读取weixin.md获取文章内容作为description"""
-              # 优先读取1500收盘文件
-              for time in ['1500', '1200', '1000', '1400']:
-                  md_path = Path(f'data/a-share/{date}/{time}-weixin.md')
-                  if md_path.exists():
-                      content = md_path.read_text(encoding='utf-8')
-                      # 去掉frontmatter和标题，取正文前500字
-                      lines = content.split('\n')
-                      body_lines = []
-                      in_frontmatter = False
-                      for line in lines:
-                          if line.strip() == '---':
-                              in_frontmatter = not in_frontmatter
-                              continue
-                          if not in_frontmatter and line.strip() and not line.startswith('#'):
-                              body_lines.append(line)
-                          elif line.startswith('#') and body_lines:
-                              break
-                      body = '\n'.join(body_lines).strip()
-                      # 取前500字
-                      desc = body[:500]
-                      if len(body) > 500:
-                          desc += '...'
-                      return desc.replace('<', '&lt;').replace('>', '&gt;')
-              return ''
 
           rss = '''<?xml version="1.0" encoding="UTF-8"?>
           <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -60,7 +32,7 @@ jobs:
             <link>https://magicwen007.github.io/a-share-viewer/</link>
             <description>A股每日收盘点评</description>
             <language>zh-cn</language>
-            <lastBuildDate>2026-03-10</lastBuildDate>
+            <lastBuildDate>{date}</lastBuildDate>
             <atom:link href="https://magicwen007.github.io/a-share-viewer/rss.xml" rel="self" type="application/rss+xml"/>
           '''.format(date=datetime.now().strftime('%a, %d %b %Y %H:%M:%S +0800'))
 
@@ -68,21 +40,19 @@ jobs:
               date = item['date']
               times = item.get('times', [])
               if '1500' in times:
-                  title = f'2026-03-10 收盘点评'
+                  title = f'{date} 收盘点评'
               elif '1200' in times:
-                  title = f'2026-03-10 午盘点评'
+                  title = f'{date} 午盘点评'
               elif '1000' in times:
-                  title = f'2026-03-10 早盘点评'
+                  title = f'{date} 早盘点评'
               else:
-                  title = f'2026-03-10 点评'
+                  title = f'{date} 点评'
               pub = datetime.strptime(date, '%Y-%m-%d').strftime('%a, %d %b %Y 15:00:00 +0800')
-              desc = get_description(date)
               rss += f'''  <item>
                 <title><![CDATA[{title}]]></title>
                 <link>https://raw.githubusercontent.com/magicwen007/a-share-viewer/main/data/a-share/{date}/weixin.md</link>
                 <guid>https://raw.githubusercontent.com/magicwen007/a-share-viewer/main/data/a-share/{date}/weixin.md</guid>
                 <pubDate>{pub}</pubDate>
-                <description><![CDATA[{desc}]]></description>
               </item>
           '''
 
