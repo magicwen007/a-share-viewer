@@ -246,29 +246,76 @@
   </div>
 
   <script>
-    // 可用的日期目录（静态配置）
-    const availableDates = [
-      '2026-03-10',
-      '2026-03-09',
-      '2026-03-06',
-      '2026-03-05'
-    ];
-    
-    // 每个日期可用的时间点文件
-    const timePoints = {
-      '2026-03-10': ['1000', '1200'],
-      '2026-03-09': ['1000', '1200', '1400', '1500'],
-      '2026-03-06': ['1000', '1400', '1500'],
-      '2026-03-05': ['1000', '1500']
-    };
-    
+    // 数据路径配置
+    const DATA_BASE_PATH = 'data/a-share';
+
+    // 动态扫描的数据
+    let availableDates = [];
+    let timePoints = {};
+
     const timeLabels = {
       '1000': '早盘',
       '1200': '午盘',
       '1400': '午后',
       '1500': '收盘'
     };
-    
+
+    // 动态扫描目录
+    async function scanDataDirectories() {
+      try {
+        const dates = [];
+        const timeMap = {};
+
+        // 尝试扫描最近30天的目录
+        const now = new Date();
+        for (let i = 0; i < 30; i++) {
+          const d = new Date(now);
+          d.setDate(d.getDate() - i);
+          const dateStr = d.toISOString().split('T')[0];
+
+          const times = [];
+          // 扫描该日期下的所有 *-weixin.md 文件
+          for (const time of ['1000', '1200', '1400', '1500']) {
+            try {
+              const response = await fetch(`${DATA_BASE_PATH}/${dateStr}/${time}-weixin.md`, { method: 'HEAD' });
+              if (response.ok) {
+                times.push(time);
+              }
+            } catch (e) {
+              // 忽略
+            }
+          }
+
+          // 也检查 weixin.md（汇总版）
+          if (times.length === 0) {
+            try {
+              const response = await fetch(`${DATA_BASE_PATH}/${dateStr}/weixin.md`, { method: 'HEAD' });
+              if (response.ok) {
+                times.push('summary');
+              }
+            } catch (e) {
+              // 忽略
+            }
+          }
+
+          if (times.length > 0) {
+            dates.push(dateStr);
+            timeMap[dateStr] = times.sort();
+          }
+        }
+
+        availableDates = dates.sort().reverse();
+        timePoints = timeMap;
+
+        console.log('动态扫描结果:', { availableDates, timePoints });
+        return { availableDates, timePoints };
+
+      } catch (error) {
+        console.error('扫描失败:', error);
+        return { availableDates: [], timePoints: {} };
+      }
+    }
+
     // 日期格式化
     function formatDate(dateStr) {
       const d = new Date(dateStr);
@@ -540,7 +587,11 @@
     }
     
     // 初始化
-    renderSidebar();
+    async function init() {
+      await scanDataDirectories();
+      renderSidebar();
+    }
+    init();
     
     // 暴露全局函数
     window.loadContent = loadContent;
