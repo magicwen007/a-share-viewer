@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A股点评 - 每日盘面分析</title>
+  <style>
+    :root {
+      --bg-primary: #0d1117;
+      --bg-secondary: #161b22;
+      --bg-tertiary: #21262d;
+      --text-primary: #c9d1d9;
+      --text-secondary: #8b949e;
+      --text-muted: #6e7681;
+      --accent: #58a6ff;
+      --accent-hover: #79c0ff;
+      --green: #3fb950;
+      --red: #f85149;
+      --yellow: #d29922;
+      --purple: #a371f7;
+      --border: #30363d;
+      --card-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .header h1 span {
+      color: var(--accent);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* Calendar */
+    .calendar-section {
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border);
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .calendar-header h2 {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+    }
+
+    .calendar-nav {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .calendar-nav button {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+
+    .calendar-nav button:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+
+    .calendar-day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+    }
+
+    .calendar-day:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    .calendar-day.has-data {
+      background: var(--green);
+      color: white;
+      font-weight: 600;
+    }
+
+    .calendar-day.has-data:hover {
+      opacity: 0.85;
+    }
+
+    .calendar-day.today {
+      border: 2px solid var(--accent);
+    }
+
+    .calendar-day.no-data {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .calendar-day.other-month {
+      opacity: 0.3;
+    }
+
+    /* Review Card */
+    .review-card {
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-bottom: 2rem;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .review-header {
+      background: var(--bg-tertiary);
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .review-header h2 {
+      font-size: 1.2rem;
+      color: var(--text-primary);
+    }
+
+    .review-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .review-meta .tag {
+      background: var(--accent);
+      color: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+
+    .review-meta .tag.noon {
+      background: var(--yellow);
+    }
+
+    .review-meta .tag.close {
+      background: var(--purple);
+    }
+
+    .review-content {
+      padding: 1.5rem;
+    }
+
+    .review-content h3 {
+      color: var(--accent);
+      font-size: 1rem;
+      margin: 1.5rem 0 0.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .review-content h3:first-child {
+      margin-top: 0;
+    }
+
+    .review-content p {
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      text-align: justify;
+    }
+
+    .review-content ul {
+      margin: 0.5rem 0 1rem 1.5rem;
+      color: var(--text-primary);
+    }
+
+    .review-content li {
+      margin: 0.3rem 0;
+    }
+
+    .review-content strong {
+      color: var(--accent);
+    }
+
+    .review-content .disclaimer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* Index Cards */
+    .index-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .index-card {
+      background: var(--bg-tertiary);
+      border-radius: 8px;
+      padding: 1rem;
+      border: 1px solid var(--border);
+    }
+
+    .index-card .name {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.3rem;
+    }
+
+    .index-card .value {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .index-card .change {
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+    }
+
+    .index-card .change.up {
+      color: var(--green);
+    }
+
+    .index-card .change.down {
+      color: var(--red);
+    }
+
+    /* Market Stats */
+    .market-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--bg-tertiary);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .stat-card .label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-card .num {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .stat-card .num.up {
+      color: var(--green);
+    }
+
+    .stat-card .num.down {
+      color: var(--red);
+    }
+
+    /* Time Tabs */
+    .time-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .time-tab {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+
+    .time-tab:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .time-tab.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text-secondary);
+    }
+
+    .empty-state svg {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    .empty-state p {
+      font-size: 1.1rem;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    /* Loading */
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .container {
+        padding: 1rem;
+      }
+
+      .header {
+        padding: 1rem;
+      }
+
+      .calendar-section {
+        padding: 1rem;
+      }
+
+      .market-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>📈 <span>A股</span>点评</h1>
+  </header>
+
+  <main class="container">
+    <!-- Calendar -->
+    <section class="calendar-section">
+      <div class="calendar-header">
+        <h2 id="calendarTitle">2026年3月</h2>
+        <div class="calendar-nav">
+          <button onclick="changeMonth(-1)">← 上月</button>
+          <button onclick="changeMonth(1)">下月 →</button>
+        </div>
+      </div>
+      <div class="calendar-grid" id="calendarGrid">
+        <div class="calendar-day">日</div>
+        <div class="calendar-day">一</div>
+        <div class="calendar-day">二</div>
+        <div class="calendar-day">三</div>
+        <div class="calendar-day">四</div>
+        <div class="calendar-day">五</div>
+        <div class="calendar-day">六</div>
+      </div>
+    </section>
+
+    <!-- Review Content -->
+    <div id="reviewContainer"></div>
+  </main>
+
+  <footer class="footer">
+    <p>A股点评 · 每日盘面分析 · 仅供参考</p>
+  </footer>
+
+  <script>
+    // Data config
+    const DATA_PATH = '../data/a-share/';
+    let currentYear = 2026;
+    let currentMonth = 3;
+    let selectedDate = null;
+    let availableDates = {};
+
+    // Initialize
+    async function init() {
+      await loadAvailableDates();
+      renderCalendar();
+      // Load today's data if available
+      const today = new Date();
+      selectDate(today.getFullYear(), today.getMonth() + 1, today.getDate());
+    }
+
+    // Load available dates from data directory
+    async function loadAvailableDates() {
+      // Known dates from the data directory
+      const knownDates = [
+        '2026-03-05', '2026-03-06', '2026-03-09', '2026-03-10'
+      ];
+
+      for (const date of knownDates) {
+        availableDates[date] = {};
+
+        // Check each time slot
+        const times = ['1000', '1200', '1400', '1500'];
+        for (const time of times) {
+          try {
+            const response = await fetch(`${DATA_PATH}/${date}/${time}-weixin.md`);
+            if (response.ok) {
+              availableDates[date][time] = true;
+            }
+          } catch (e) {
+            // Try JSON data
+            try {
+              const jsonRes = await fetch(`${DATA_PATH}/${date}/${time}-data.json`);
+              if (jsonRes.ok) {
+                availableDates[date][time] = true;
+              }
+            } catch (e2) {
+              // Ignore
+            }
+          }
+        }
+      }
+    }
+
+    // Render calendar
+    function renderCalendar() {
+      const grid = document.getElementById('calendarGrid');
+      const title = document.getElementById('calendarTitle');
+
+      title.textContent = `${currentYear}年${currentMonth}月`;
+
+      // Clear existing days (keep headers)
+      while (grid.children.length > 7) {
+        grid.removeChild(grid.lastChild);
+      }
+
+      const firstDay = new Date(currentYear, currentMonth - 1, 1).getDay();
+      const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
+      const today = new Date();
+
+      // Previous month days
+      const prevMonthDays = new Date(currentYear, currentMonth - 1, 0).getDate();
+      for (let i = firstDay - 1; i >= 0; i--) {
+        const day = document.createElement('div');
+        day.className = 'calendar-day other-month';
+        day.textContent = prevMonthDays - i;
+        grid.appendChild(day);
+      }
+
+      // Current month days
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dateStr = `${currentYear}-${String(currentMonth).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        const el = document.createElement('div');
+        el.className = 'calendar-day';
+
+        if (availableDates[dateStr] && Object.keys(availableDates[dateStr]).length > 0) {
+          el.classList.add('has-data');
+        }
+
+        if (today.getFullYear() === currentYear &&
+            today.getMonth() + 1 === currentMonth &&
+            today.getDate() === day) {
+          el.classList.add('today');
+        }
+
+        el.textContent = day;
+        el.onclick = () => selectDate(currentYear, currentMonth, day);
+        grid.appendChild(el);
+      }
+
+      // Next month days
+      const remaining = 42 - (firstDay + daysInMonth);
+      for (let i = 1; i <= remaining; i++) {
+        const day = document.createElement('div');
+        day.className = 'calendar-day other-month';
+        day.textContent = i;
+        grid.appendChild(day);
+      }
+    }
+
+    // Change month
+    function changeMonth(delta) {
+      currentMonth += delta;
+      if (currentMonth > 12) {
+        currentMonth = 1;
+        currentYear++;
+      } else if (currentMonth < 1) {
+        currentMonth = 12;
+        currentYear--;
+      }
+      renderCalendar();
+    }
+
+    // Select date and load data
+    async function selectDate(year, month, day) {
+      const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      selectedDate = dateStr;
+
+      // Update calendar selection
+      document.querySelectorAll('.calendar-day').forEach(el => {
+        el.style.border = 'none';
+      });
+
+      const container = document.getElementById('reviewContainer');
+      container.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+      // Load data for this date
+      await loadReviewData(dateStr);
+    }
+
+    // Load review data
+    async function loadReviewData(dateStr) {
+      const container = document.getElementById('reviewContainer');
+      const dateData = availableDates[dateStr];
+
+      if (!dateData || Object.keys(dateData).length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+            <p>${dateStr} 暂无点评数据</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Get all available times for this date
+      const times = Object.keys(dateData).sort();
+
+      if (times.length === 1) {
+        // Single time - show directly
+        await loadSingleReview(dateStr, times[0], container);
+      } else {
+        // Multiple times - show tabs
+        await loadMultipleReviews(dateStr, times, container);
+      }
+    }
+
+    // Load single review
+    async function loadSingleReview(dateStr, time, container) {
+      try {
+        const response = await fetch(`${DATA_PATH}/${dateStr}/${time}-weixin.md`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch');
+        }
+        const content = await response.text();
+        renderReview(dateStr, time, content, container);
+      } catch (e) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <p>加载失败</p>
+          </div>
+        `;
+      }
+    }
+
+    // Load multiple reviews with tabs
+    async function loadMultipleReviews(dateStr, times, container) {
+      const reviews = {};
+
+      for (const time of times) {
+        try {
+          const response = await fetch(`${DATA_PATH}/${dateStr}/${time}-weixin.md`);
+          if (response.ok) {
+            reviews[time] = await response.text();
+          }
+        } catch (e) {
+          // Ignore
+        }
+      }
+
+      const timeLabels = {
+        '1000': '早盘',
+        '1200': '午盘',
+        '1400': '午后',
+        '1500': '收盘'
+      };
+
+      let html = '<div class="time-tabs">';
+      times.forEach((time, idx) => {
+        const label = timeLabels[time] || time;
+        html += `<div class="time-tab ${idx === 0 ? 'active' : ''}"
+                     onclick="switchTimeTab('${time}')"
+                     data-time="${time}">${label}</div>`;
+      });
+      html += '</div>';
+
+      // Render first review
+      const firstTime = times[0];
+      container.innerHTML = html + '<div id="reviewContent"></div>';
+      renderReviewContent(firstTime, reviews[firstTime]);
+    }
+
+    // Switch time tab
+    function switchTimeTab(time) {
+      document.querySelectorAll('.time-tab').forEach(el => {
+        el.classList.toggle('active', el.dataset.time === time);
+      });
+
+      const dateStr = selectedDate;
+      fetch(`${DATA_PATH}/${dateStr}/${time}-weixin.md`)
+        .then(r => r.text())
+        .then(content => renderReviewContent(time, content));
+    }
+
+    // Render review content
+    function renderReviewContent(time, content) {
+      const container = document.getElementById('reviewContent');
+      if (!container) return;
+
+      const dateStr = selectedDate;
+      renderReview(dateStr, time, content, container);
+    }
+
+    // Render review card
+    function renderReview(dateStr, time, content, container) {
+      const timeLabels = {
+        '1000': '早盘',
+        '1200': '午盘',
+        '1400': '午后',
+        '1500': '收盘'
+      };
+
+      const label = timeLabels[time] || time;
+      const isNoon = time === '1200';
+      const isClose = time === '1500';
+
+      // Parse markdown content
+      const parsed = parseMarkdown(content);
+
+      container.innerHTML = `
+        <article class="review-card">
+          <header class="review-header">
+            <h2>${parsed.title}</h2>
+            <div class="review-meta">
+              <span class="tag ${isNoon ? 'noon' : isClose ? 'close' : ''}">${label}</span>
+              <span>${dateStr}</span>
+            </div>
+          </header>
+          <div class="review-content">
+            ${parsed.content}
+          </div>
+        </article>
+      `;
+    }
+
+    // Simple markdown parser
+    function parseMarkdown(content) {
+      // Extract title
+      let title = '盘面点评';
+      const titleMatch = content.match(/^#\s+(.+)$/m);
+      if (titleMatch) {
+        title = titleMatch[1];
+      }
+
+      // Convert markdown to HTML
+      let html = content
+        // Remove title
+        .replace(/^#\s+.+$/gm, '')
+        // Headings
+        .replace(/^##\s+(.+)$/gm, '<h3>$1</h3>')
+        // Bold
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        // Lists
+        .replace(/^-\s+(.+)$/gm, '<li>$1</li>')
+        // Horizontal rule
+        .replace(/^---$/gm, '<hr style="border:none;border-top:1px solid var(--border);margin:2rem 0;">')
+        // Paragraphs
+        .replace(/\n\n/g, '</p><p>')
+        // Wrap lists
+        .replace(/(<li>.+<\/li>)+/g, '<ul>$&</ul>')
+        // Italic
+        .replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+      // Wrap in paragraphs
+      html = '<p>' + html + '</p>';
+
+      // Clean up
+      html = html.replace(/<p><\/p>/g, '');
+      html = html.replace(/<p>(<h3>)/g, '$1');
+      html = html.replace(/(<\/h3>)<\/p>/g, '$1');
+      html = html.replace(/<p>(<ul>)/g, '$1');
+      html = html.replace(/(<\/ul>)<\/p>/g, '$1');
+      html = html.replace(/<p>(<hr)/g, '$1');
+      html = html.replace(/(<hr[^>]*>)<\/p>/g, '$1');
+
+      return { title, content: html };
+    }
+
+    // Start
+    init();
+  </script>
+</body>
+</html>
