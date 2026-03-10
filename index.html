@@ -249,13 +249,19 @@
     // 数据路径配置
     const DATA_BASE_PATH = 'data/a-share';
 
-    // 静态数据
-    const availableDates = ['2026-03-10', '2026-03-09', '2026-03-06', '2026-03-05'];
-    const timePoints = {
-      '2026-03-10': ['1000', '1200'],
-      '2026-03-09': ['1000', '1200', '1400', '1500'],
-      '2026-03-06': ['1000', '1400', '1500'],
-      '2026-03-05': ['1000', '1500']
+    // 动态数据
+    let availableDates = [];
+    let timePoints = {};
+
+    // 备用数据
+    const fallbackData = {
+      availableDates: ['2026-03-10', '2026-03-09', '2026-03-06', '2026-03-05'],
+      timePoints: {
+        '2026-03-10': ['1000', '1200'],
+        '2026-03-09': ['1000', '1200', '1400', '1500'],
+        '2026-03-06': ['1000', '1400', '1500'],
+        '2026-03-05': ['1000', '1500']
+      }
     };
 
     const timeLabels = {
@@ -264,6 +270,76 @@
       '1400': '午后',
       '1500': '收盘'
     };
+
+    // 动态扫描目录
+    async function scanDataDirectories() {
+      console.log('开始动态扫描...');
+
+      // 先设置备用数据
+      availableDates = [...fallbackData.availableDates];
+      timePoints = { ...fallbackData.timePoints };
+
+      const dates = [];
+      const timeMap = {};
+
+      // 尝试扫描最近30天的目录
+      const now = new Date();
+      const scanPromises = [];
+
+      for (let i = 0; i < 30; i++) {
+        const d = new Date(now);
+        d.setDate(d.getDate() - i);
+        const dateStr = d.toISOString().split('T')[0];
+
+        // 并行检查多种文件
+        const checkPromises = [];
+
+        // 检查 weixin.md（汇总版）
+        checkPromises.push(
+          fetch(`${DATA_BASE_PATH}/${dateStr}/weixin.md`, { method: 'HEAD' })
+            .then(res => ({ time: 'summary', ok: res.ok }))
+            .catch(() => ({ time: 'summary', ok: false }))
+        );
+
+        // 检查时间点文件
+        for (const time of ['1000', '1200', '1400', '1500']) {
+          checkPromises.push(
+            fetch(`${DATA_BASE_PATH}/${dateStr}/${time}-weixin.md`, { method: 'HEAD' })
+              .then(res => ({ time, ok: res.ok }))
+              .catch(() => ({ time, ok: false }))
+          );
+        }
+
+        // 收集所有日期的检查
+        scanPromises.push(
+          Promise.all(checkPromises).then(results => {
+            const foundTimes = results.filter(r => r.ok).map(r => r.time);
+            if (foundTimes.length > 0) {
+              dates.push(dateStr);
+              timeMap[dateStr] = foundTimes.sort();
+              console.log(`找到 ${dateStr}:`, foundTimes);
+            }
+          }).catch(err => {
+            console.error(`扫描 ${dateStr} 失败:`, err);
+          })
+        );
+      }
+
+      // 等待所有扫描完成
+      await Promise.all(scanPromises);
+      console.log('扫描完成:', dates);
+
+      // 只有当扫描到数据时才更新
+      if (dates.length > 0) {
+        availableDates = dates.sort().reverse();
+        timePoints = timeMap;
+        console.log('动态扫描成功:', { availableDates, timePoints });
+      } else {
+        console.log('动态扫描无数据，使用备用数据');
+      }
+
+      return { availableDates, timePoints };
+    }
 
     // 日期格式化
     function formatDate(dateStr) {
@@ -536,7 +612,10 @@
     }
     
     // 初始化
-    function init() {
+    async function init() {
+      console.log('初始化...');
+      await scanDataDirectories();
+      console.log('数据已准备好:', { availableDates, timePoints });
       renderSidebar();
     }
     init();
