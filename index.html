@@ -246,27 +246,67 @@
   </div>
 
   <script>
-    // 可用的日期目录（静态配置）
-    const availableDates = [
-      '2026-03-10',
-      '2026-03-09',
-      '2026-03-06',
-      '2026-03-05'
-    ];
+    // 动态扫描数据目录获取可用日期
+    let availableDates = [];
+    let timePoints = {};
     
-    // 每个日期可用的时间点文件
-    const timePoints = {
-      '2026-03-10': ['1000', '1200'],
-      '2026-03-09': ['1000', '1200', '1400', '1500'],
-      '2026-03-06': ['1000', '1400', '1500'],
-      '2026-03-05': ['1000', '1500']
-    };
+    async function scanDataDirectory() {
+      const basePath = 'data/a-share/';
+      const dates = [];
+      const timeMap = {};
+      
+      try {
+        // 尝试获取目录列表（通过 fetch 一个已知文件再推断）
+        // 由于没有目录列表API，我们通过尝试获取各日期的 weixin.md 来探测
+        // 先获取最大的可能日期范围
+        const now = new Date();
+        for (let i = 0; i < 90; i++) {
+          const d = new Date(now);
+          d.setDate(d.getDate() - i);
+          const dateStr = d.toISOString().slice(0, 10);
+          
+          // 检查是否存在 weixin.md 或任何时间点的文件
+          const times = [];
+          for (const time of ['1500', '1400', '1200', '1000']) {
+            try {
+              const resp = await fetch(`${basePath}${dateStr}/${time}-weixin.md`, {method: 'HEAD'});
+              if (resp.ok) times.push(time);
+            } catch (e) {}
+          }
+          
+          // 也检查根目录的 weixin.md
+          if (times.length === 0) {
+            try {
+              const resp = await fetch(`${basePath}${dateStr}/weixin.md`, {method: 'HEAD'});
+              if (resp.ok) times.push('summary');
+            } catch (e) {}
+          }
+          
+          if (times.length > 0) {
+            dates.push(dateStr);
+            timeMap[dateStr] = times.sort();
+            if (timeMap[dateStr].includes('summary')) {
+              timeMap[dateStr] = ['summary'];
+            }
+          }
+        }
+        
+        availableDates = dates;
+        timePoints = timeMap;
+        
+      } catch (e) {
+        console.error('扫描数据目录失败:', e);
+        // 降级：显示静态提示
+        availableDates = [];
+      }
+    }
     
     const timeLabels = {
       '1000': '早盘',
       '1200': '午盘',
       '1400': '午后',
-      '1500': '收盘'
+      '1500': '收盘',
+      'summary': '汇总'
     };
     
     // 日期格式化
@@ -316,20 +356,32 @@
       content.innerHTML = '<div class="loading">加载中...</div>';
       
       try {
-        // 优先尝试加载 weixin.md（汇总版）
-        const response = await fetch(`data/a-share/${date}/weixin.md`);
+        // 检查是否是汇总模式（只有 weixin.md，没有分时数据）
+        const times = timePoints[date] || [];
         
+        if (times.includes('summary')) {
+          // 汇总模式：直接加载 weixin.md
+          const response = await fetch(`data/a-share/${date}/weixin.md`);
+          if (response.ok) {
+            const mdContent = await response.text();
+            const { html, meta } = parseMarkdown(mdContent);
+            renderArticle(meta, html, date);
+            return;
+          }
+        }
+        
+        // 分时模式：显示时间点列表
+        if (times.length > 0 && !times.includes('summary')) {
+          await renderTimePoints(date, times);
+          return;
+        }
+        
+        // 尝试加载 weixin.md（兼容旧逻辑）
+        const response = await fetch(`data/a-share/${date}/weixin.md`);
         if (response.ok) {
           const mdContent = await response.text();
           const { html, meta } = parseMarkdown(mdContent);
           renderArticle(meta, html, date);
-          return;
-        }
-        
-        // 如果没有 weixin.md，显示当天可用的时间点
-        const times = timePoints[date] || [];
-        if (times.length > 0) {
-          await renderTimePoints(date, times);
           return;
         }
         
@@ -540,7 +592,17 @@
     }
     
     // 初始化
-    renderSidebar();
+    async function init() {
+      await scanDataDirectory();
+      renderSidebar();
+      // 加载当天或最新的日期
+      if (availableDates.length > 0) {
+        const today = new Date().toISOString().slice(0, 10);
+        const targetDate = availableDates.includes(today) ? today : availableDates[0];
+        loadContent(targetDate);
+      }
+    }
+    init();
     
     // 暴露全局函数
     window.loadContent = loadContent;
