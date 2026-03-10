@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>A股点评</title>
+  <link>https://magicwen007.github.io/a-share-viewer/</link>
+  <description>A股每日收盘点评</description>
+  <language>zh-cn</language>
+  <lastBuildDate>Tue, 10 Mar 2026 16:21:35 +0800</lastBuildDate>
+  <atom:link href="https://magicwen007.github.io/a-share-viewer/rss.xml" rel="self" type="application/rss+xml"/>
+  <item>
+    <title><![CDATA[2026-03-10 收盘点评]]></title>
+    <link>https://magicwen007.github.io/a-share-viewer/#2026-03-10</link>
+    <guid>https://magicwen007.github.io/a-share-viewer/#2026-03-10</guid>
+    <pubDate>Tue, 10 Mar 2026 15:00:00 +0800</pubDate>
+  </item>
+  <item>
+    <title><![CDATA[2026-03-09 收盘点评]]></title>
+    <link>https://magicwen007.github.io/a-share-viewer/#2026-03-09</link>
+    <guid>https://magicwen007.github.io/a-share-viewer/#2026-03-09</guid>
+    <pubDate>Mon, 09 Mar 2026 15:00:00 +0800</pubDate>
+  </item>
+  <item>
+    <title><![CDATA[2026-03-06 收盘点评]]></title>
+    <link>https://magicwen007.github.io/a-share-viewer/#2026-03-06</link>
+    <guid>https://magicwen007.github.io/a-share-viewer/#2026-03-06</guid>
+    <pubDate>Fri, 06 Mar 2026 15:00:00 +0800</pubDate>
+  </item>
+  <item>
+    <title><![CDATA[2026-03-05 收盘点评]]></title>
+    <link>https://magicwen007.github.io/a-share-viewer/#2026-03-05</link>
+    <guid>https://magicwen007.github.io/a-share-viewer/#2026-03-05</guid>
+    <pubDate>Thu, 05 Mar 2026 15:00:00 +0800</pubDate>
+  </item>
+</channel>
+</rss>
