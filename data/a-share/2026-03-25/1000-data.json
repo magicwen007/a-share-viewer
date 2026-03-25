@@ -1,0 +1,472 @@
+{
+  "date": "2026-03-25",
+  "time": "10:00",
+  "label": "开盘",
+  "timestamp": "2026-03-25 10:02:58",
+  "index": {
+    "sh": {
+      "close": 3915.82,
+      "change": 0.89,
+      "amount": "8223亿"
+    },
+    "sz": {
+      "close": 13793.1,
+      "change": 1.9
+    },
+    "cy": {
+      "close": 3309.59,
+      "change": 1.78
+    },
+    "kc": {
+      "close": 1323.08,
+      "change": 2.5
+    },
+    "total_amount": "0.82万亿"
+  },
+  "market": {
+    "up_count": 4695,
+    "zt_count": 39,
+    "down_count": 418,
+    "dt_count": 2,
+    "flat_count": 69
+  },
+  "industry": {},
+  "concept": {
+    "rise_top5": [
+      {
+        "概念": "光纤概念",
+        "涨跌幅": "4.27%"
+      },
+      {
+        "概念": "共封装光学(CPO)",
+        "涨跌幅": "4.05%"
+      },
+      {
+        "概念": "F5G概念",
+        "涨跌幅": "3.72%"
+      },
+      {
+        "概念": "赛马概念",
+        "涨跌幅": "3.58%"
+      },
+      {
+        "概念": "铜缆高速连接",
+        "涨跌幅": "3.45%"
+      }
+    ],
+    "fall_bottom5": [
+      {
+        "概念": "煤炭概念",
+        "涨跌幅": "0.01%"
+      },
+      {
+        "概念": "煤化工概念",
+        "涨跌幅": "0.21%"
+      },
+      {
+        "概念": "俄乌冲突概念",
+        "涨跌幅": "0.26%"
+      },
+      {
+        "概念": "高股息精选",
+        "涨跌幅": "0.33%"
+      },
+      {
+        "概念": "兵装重组概念",
+        "涨跌幅": "0.34%"
+      }
+    ]
+  },
+  "stocks": {
+    "zt_stocks": [
+      {
+        "name": "N宏明",
+        "code": "301682",
+        "price": 137.68,
+        "change": "97.65%"
+      },
+      {
+        "name": "光环新网",
+        "code": "300383",
+        "price": 18.58,
+        "change": "20.03%"
+      },
+      {
+        "name": "阿莱德",
+        "code": "301419",
+        "price": 43.79,
+        "change": "20.01%"
+      },
+      {
+        "name": "延江股份",
+        "code": "300658",
+        "price": 27.78,
+        "change": "20.00%"
+      },
+      {
+        "name": "海川智能",
+        "code": "300720",
+        "price": 70.8,
+        "change": "14.36%"
+      },
+      {
+        "name": "商络电子",
+        "code": "300975",
+        "price": 20.04,
+        "change": "12.97%"
+      },
+      {
+        "name": "东方国信",
+        "code": "300166",
+        "price": 16.07,
+        "change": "12.06%"
+      },
+      {
+        "name": "圣邦股份",
+        "code": "300661",
+        "price": 76.96,
+        "change": "11.86%"
+      },
+      {
+        "name": "华康洁净",
+        "code": "301235",
+        "price": 53.01,
+        "change": "11.86%"
+      },
+      {
+        "name": "网宿科技",
+        "code": "300017",
+        "price": 18.92,
+        "change": "11.82%"
+      },
+      {
+        "name": "奥飞数据",
+        "code": "300738",
+        "price": 23.38,
+        "change": "10.49%"
+      },
+      {
+        "name": "金太阳",
+        "code": "300606",
+        "price": 37.63,
+        "change": "10.48%"
+      },
+      {
+        "name": "协创数据",
+        "code": "300857",
+        "price": 228.41,
+        "change": "10.10%"
+      },
+      {
+        "name": "韶能股份",
+        "code": "000601",
+        "price": 8.87,
+        "change": "10.05%"
+      },
+      {
+        "name": "通鼎互联",
+        "code": "002491",
+        "price": 11.4,
+        "change": "10.04%"
+      },
+      {
+        "name": "富春环保",
+        "code": "002479",
+        "price": 5.92,
+        "change": "10.04%"
+      },
+      {
+        "name": "真视通",
+        "code": "002771",
+        "price": 16.93,
+        "change": "10.01%"
+      },
+      {
+        "name": "铭普光磁",
+        "code": "002902",
+        "price": 25.95,
+        "change": "10.00%"
+      },
+      {
+        "name": "融捷股份",
+        "code": "002192",
+        "price": 64.46,
+        "change": "10.00%"
+      },
+      {
+        "name": "江顺科技",
+        "code": "001400",
+        "price": 147.29,
+        "change": "10.00%"
+      },
+      {
+        "name": "国风新材",
+        "code": "000859",
+        "price": 10.34,
+        "change": "10.00%"
+      },
+      {
+        "name": "湖南发展",
+        "code": "000722",
+        "price": 16.62,
+        "change": "9.99%"
+      },
+      {
+        "name": "特发信息",
+        "code": "000070",
+        "price": 15.86,
+        "change": "9.99%"
+      },
+      {
+        "name": "二六三",
+        "code": "002467",
+        "price": 7.38,
+        "change": "9.99%"
+      },
+      {
+        "name": "中嘉博创",
+        "code": "000889",
+        "price": 3.54,
+        "change": "9.94%"
+      },
+      {
+        "name": "西王食品",
+        "code": "000639",
+        "price": 3.1,
+        "change": "9.93%"
+      },
+      {
+        "name": "新能泰山",
+        "code": "000720",
+        "price": 4.55,
+        "change": "9.90%"
+      }
+    ],
+    "dt_stocks": [],
+    "high_change": [
+      {
+        "name": "粤电力Ａ",
+        "code": "000539",
+        "price": 7.43,
+        "change": "9.59%"
+      },
+      {
+        "name": "晓程科技",
+        "code": "300139",
+        "price": 61.88,
+        "change": "9.52%"
+      },
+      {
+        "name": "智立方",
+        "code": "301312",
+        "price": 90.6,
+        "change": "9.34%"
+      },
+      {
+        "name": "康盛股份",
+        "code": "002418",
+        "price": 4.56,
+        "change": "9.09%"
+      },
+      {
+        "name": "易天股份",
+        "code": "300812",
+        "price": 36.45,
+        "change": "9.03%"
+      },
+      {
+        "name": "国民技术",
+        "code": "300077",
+        "price": 22.54,
+        "change": "8.89%"
+      },
+      {
+        "name": "鼎龙股份",
+        "code": "300054",
+        "price": 47.09,
+        "change": "8.35%"
+      },
+      {
+        "name": "万邦德",
+        "code": "002082",
+        "price": 21.43,
+        "change": "8.29%"
+      },
+      {
+        "name": "润贝航科",
+        "code": "001316",
+        "price": 46.72,
+        "change": "8.02%"
+      },
+      {
+        "name": "金陵体育",
+        "code": "300651",
+        "price": 30.7,
+        "change": "7.95%"
+      },
+      {
+        "name": "罗博特科",
+        "code": "300757",
+        "price": 372.59,
+        "change": "7.94%"
+      },
+      {
+        "name": "立讯精密",
+        "code": "002475",
+        "price": 50.01,
+        "change": "7.92%"
+      },
+      {
+        "name": "证通电子",
+        "code": "002197",
+        "price": 8.59,
+        "change": "7.91%"
+      },
+      {
+        "name": "中瓷电子",
+        "code": "003031",
+        "price": 81.28,
+        "change": "7.90%"
+      },
+      {
+        "name": "首都在线",
+        "code": "300846",
+        "price": 30.77,
+        "change": "7.74%"
+      },
+      {
+        "name": "宏景科技",
+        "code": "301396",
+        "price": 165.87,
+        "change": "7.71%"
+      },
+      {
+        "name": "凌玮科技",
+        "code": "301373",
+        "price": 67.82,
+        "change": "7.65%"
+      },
+      {
+        "name": "金利华电",
+        "code": "300069",
+        "price": 19.57,
+        "change": "7.59%"
+      },
+      {
+        "name": "威唐工业",
+        "code": "300707",
+        "price": 17.01,
+        "change": "7.52%"
+      },
+      {
+        "name": "铜牛信息",
+        "code": "300895",
+        "price": 70.79,
+        "change": "7.52%"
+      }
+    ],
+    "low_change": []
+  },
+  "news": [
+    {
+      "tag": "市场动态",
+      "summary": "政府官员尚未透露这些部队的具体用途，但他们可能承担各种支援任务，或作为地面进攻的先锋",
+      "url": "https://database.caixin.com/2026-03-25/102427056.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "OpenAI在高调推出Sora独立应用程序六个月后，计划停止该视频生成服务，以简化其人工智能产品线",
+      "url": "https://database.caixin.com/2026-03-25/102427055.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "境外发行人在中国在岸市场发行的人民币债券规模本月逆势上扬，反映出在中东战事期间中国市场对投资者来说正成为一个相对稳定的避风港",
+      "url": "https://database.caixin.com/2026-03-25/102427054.html?cxapp_link=true"
+    },
+    {
+      "tag": "行业速递",
+      "summary": "油价波动会显著影响航司盈利。国际航线燃油附加费已密集大幅上调，预计4月国内航油价格也将上调。但调费主要是缓冲，实际利润保护效果还要视市场实际供需等因素而异",
+      "url": "https://database.caixin.com/2026-03-25/102427015.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场洞察",
+      "summary": "自去年以来金价上行较快，此前已积累较多涨幅，其避险属性在一定程度上被弱化；黄金与美国股指期货之间的相关性显著增强",
+      "url": "https://database.caixin.com/2026-03-24/102426928.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "伊朗冲突正推动中东国家转向成本更低的韩国防空系统，为韩国拓展武器出口版图至欧洲以外地区打开新机遇",
+      "url": "https://database.caixin.com/2026-03-24/102426810.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "投资者开始将注意力从最初的通胀冲击转向对全球经济增长的打击上",
+      "url": "https://database.caixin.com/2026-03-24/102426808.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "Switch 2自去年6月首发表现创下纪录以来，销量未能达到管理层的高预期",
+      "url": "https://database.caixin.com/2026-03-24/102426812.html?cxapp_link=true"
+    },
+    {
+      "tag": "今日热点",
+      "summary": "有色金属连续几日大跌后迎反弹、成领涨板块，绿电概念股大涨，航运港口板块表现活跃；油气股整体再度下挫",
+      "url": "https://database.caixin.com/2026-03-24/102426726.html?cxapp_link=true"
+    },
+    {
+      "tag": "权益周观察",
+      "summary": "油价一度突破100美元阈值，机构建议短期关注泛能源，包括传统能源的油气煤电，新能源的储能电网，以及通胀涨价相关的农化产品。与此同时，低位的金融和消费板块也有一定防御价值",
+      "url": "https://database.caixin.com/2026-03-24/102426699.html?cxapp_link=true"
+    },
+    {
+      "tag": "华尔街原声",
+      "summary": "双线资本（DoubleLine Capital）创始人兼CEO、有“新债王”之称的杰弗里·冈拉克（Jeffrey Gundlach）认为，随着近期黄金价格回落至其预设的年度目标区间，当前已构成“极佳的加仓时点”",
+      "url": "https://database.caixin.com/2026-03-24/102426685.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "日本大部分石油进口来自中东，且运输都需经过这条海峡",
+      "url": "https://database.caixin.com/2026-03-24/102426697.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "这一表态引发外界对会谈参与方及协议内容的困惑",
+      "url": "https://database.caixin.com/2026-03-24/102426695.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "双方希望加强关系，重振遭到特朗普政府破坏的基于规则的秩序",
+      "url": "https://database.caixin.com/2026-03-24/102426693.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "华尔街巨头以及区域重量级银行今年在大力扩充人手，计划招聘数百名私人银行家服务高净值客户",
+      "url": "https://database.caixin.com/2026-03-24/102426688.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "鉴于申请赎回的投资者暂时只能拿回45%的资金，Apollo Debt Solutions向客户返还的资金占申请赎回额的比例低于一些同样启动限赎的同行",
+      "url": "https://database.caixin.com/2026-03-24/102426673.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "此举预计将对路由器市场造成巨大冲击，而该类产品主要在海外生产",
+      "url": "https://database.caixin.com/2026-03-24/102426671.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "Vitol Group美洲区首席执行官Ben Marshall表示，当前油市的定价反映出市场预期霍尔木兹海峡将“早于预期”重新开放",
+      "url": "https://database.caixin.com/2026-03-24/102426670.html?cxapp_link=true"
+    },
+    {
+      "tag": "公司速递",
+      "summary": "港股赤峰黄金复牌后跌逾20%，主要原因在于交易定价折让过大",
+      "url": "https://database.caixin.com/2026-03-23/102426471.html?cxapp_link=true"
+    },
+    {
+      "tag": "华尔街原声",
+      "summary": "此前美国国防部将Anthropic列为供应链风险对象，导致公司多笔订单被打乱。作为回应，Anthropic对国防部提起诉讼",
+      "url": "https://database.caixin.com/2026-03-23/102426439.html?cxapp_link=true"
+    }
+  ]
+}
