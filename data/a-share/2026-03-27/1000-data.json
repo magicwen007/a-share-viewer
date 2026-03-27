@@ -2,7 +2,7 @@
   "date": "2026-03-27",
   "time": "10:00",
   "label": "开盘",
-  "timestamp": "2026-03-27 11:37:50",
+  "timestamp": "2026-03-27 12:16:49",
   "index": {
     "sh": {
       "close": 3899.12,
@@ -459,6 +459,11 @@
   },
   "news": [
     {
+      "tag": "今日热点",
+      "summary": "锂电池排产向好，下游需求紧俏预期带动锂矿股反复活跃；中东冲突仍在发酵，带动原油价格维持高位，石化产业链成本传导，引发化工产品涨价",
+      "url": "https://database.caixin.com/2026-03-27/102427943.html?cxapp_link=true"
+    },
+    {
       "tag": "市场动态",
       "summary": "苹果公司计划向外部人工智能助手开放Siri，此举旨在强化iPhone作为人工智能平台的地位",
       "url": "https://database.caixin.com/2026-03-27/102427870.html?cxapp_link=true"
@@ -552,11 +557,6 @@
       "tag": "市场动态",
       "summary": "高盛集团前首席执行官Lloyd Blankfein在回忆录中警告，距离上一轮危机过去的时间越长，发生更大规模爆雷的可能性就越高",
       "url": "https://database.caixin.com/2026-03-26/102427448.html?cxapp_link=true"
-    },
-    {
-      "tag": "市场动态",
-      "summary": "自伊朗战争爆发以来，彭博美元指数已上涨2%，并于周一触及去年12月以来的最高水平。与此同时，欧元和日元在冲突期间均下跌逾2%，因为欧洲和日本都依赖中东能源供应",
-      "url": "https://database.caixin.com/2026-03-26/102427447.html?cxapp_link=true"
     }
   ]
 }
