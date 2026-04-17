@@ -1,0 +1,188 @@
+{
+  "date": "2026-04-16",
+  "time": "15:00",
+  "label": "收盘",
+  "timestamp": "2026-04-16 15:11:24",
+  "index": {
+    "sh": {
+      "close": 4055.55,
+      "change": 0.7,
+      "amount": "23417亿"
+    },
+    "sz": {
+      "close": 14796.34,
+      "change": 2.06
+    },
+    "cy": {
+      "close": 3626.27,
+      "change": 3.17
+    },
+    "kc": {
+      "close": 1422.23,
+      "change": 1.13
+    },
+    "total_amount": "2.34万亿"
+  },
+  "market": {
+    "up_count": 4063,
+    "zt_count": 82,
+    "down_count": 1004,
+    "dt_count": 4,
+    "flat_count": 124
+  },
+  "industry": {},
+  "concept": {
+    "rise_top5": [
+      {
+        "概念": "算力租赁",
+        "涨跌幅": "4.20%"
+      },
+      {
+        "概念": "云游戏",
+        "涨跌幅": "3.44%"
+      },
+      {
+        "概念": "2026一季报预增",
+        "涨跌幅": "3.29%"
+      },
+      {
+        "概念": "云办公",
+        "涨跌幅": "3.23%"
+      },
+      {
+        "概念": "钛白粉概念",
+        "涨跌幅": "3.18%"
+      }
+    ],
+    "fall_bottom5": [
+      {
+        "概念": "赛马概念",
+        "涨跌幅": "-1.17%"
+      },
+      {
+        "概念": "科创次新股",
+        "涨跌幅": "-0.49%"
+      },
+      {
+        "概念": "禽流感",
+        "涨跌幅": "-0.43%"
+      },
+      {
+        "概念": "仿制药一致性评价",
+        "涨跌幅": "-0.30%"
+      },
+      {
+        "概念": "减肥药",
+        "涨跌幅": "-0.27%"
+      }
+    ]
+  },
+  "stocks": {
+    "zt_stocks": [],
+    "dt_stocks": [],
+    "high_change": [],
+    "low_change": []
+  },
+  "news": [
+    {
+      "tag": "今日热点",
+      "summary": "创业板指大涨2.66%，港股行情亦较强势。算力租赁概念再度高涨，钨概念带动有色金属板块涨幅居前，电池相关板块表现活跃，油气股连续第三个交易日下挫",
+      "url": "https://database.caixin.com/2026-04-16/102434585.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "由于伊朗战事搅动市场，宏观对冲基金上个月在中国遭遇重创，就连十分抢手的桥水境内策略也不例外",
+      "url": "https://database.caixin.com/2026-04-16/102434564.html?cxapp_link=true"
+    },
+    {
+      "tag": "霍尔木兹日报",
+      "summary": "海峡目前仍有中国油轮通行，还有伊朗船只穿过海峡后在伊朗南部海岸停下",
+      "url": "https://database.caixin.com/2026-04-16/102434544.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "国际货币基金组织(IMF)和世界银行历来被视为自由贸易、资本主义和金融市场智慧的风向标",
+      "url": "https://database.caixin.com/2026-04-16/102434562.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "根据PitchBook数据显示，2025年亚洲高净值个人及家族办公室共向全球AI私募融资投入243亿美元。今年动能延续",
+      "url": "https://database.caixin.com/2026-04-16/102434552.html?cxapp_link=true"
+    },
+    {
+      "tag": "华尔街原声",
+      "summary": "知名资产管理公司贝莱德（BlackRock）董事长兼CEO芬克（Larry Fink）表示，长期投资将个人与国家经济增长紧密相连。那些拥有更完善养老保障体系、更多公民能够更多参与到投资中的国家往往是更大的赢家",
+      "url": "https://database.caixin.com/2026-04-15/102434348.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "汇丰私人银行下调了新兴亚洲股票评级，并削减对印度的敞口，同时由于伊朗战争风险和油价冲击，增加对黄金、现金和对冲基金的配置",
+      "url": "https://database.caixin.com/2026-04-15/102434334.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "阿斯麦控股上调全年销售预期，全球人工智能支出激增推动半导体生产，提振了对该公司先进芯片制造设备的需求",
+      "url": "https://database.caixin.com/2026-04-15/102434330.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "美国财政部长斯科特·贝森特在接受英国媒体采访时表示，伊朗战争“值得付出一点经济代价”，而他即将与英国财政大臣里夫斯举行一场可能气氛紧张的会谈",
+      "url": "https://database.caixin.com/2026-04-15/102434326.html?cxapp_link=true"
+    },
+    {
+      "tag": "霍尔木兹日报",
+      "summary": "美国海军封锁伊朗海上交通后，两艘油轮驶出海峡后又折返",
+      "url": "https://database.caixin.com/2026-04-15/102434257.html?cxapp_link=true"
+    },
+    {
+      "tag": "今日热点",
+      "summary": "午后算力产业链集体跳水，CPO、PCB、算力芯片、算力租赁、玻璃基板等多板块震荡走弱",
+      "url": "https://database.caixin.com/2026-04-15/102434233.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "星展集团私人银行负责人称，鉴于市场波动的常态化，欧美富裕客户寻觅在亚洲的投资和财富管理选项，以防投资组合受到冲击",
+      "url": "https://database.caixin.com/2026-04-15/102434227.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "据市场研究机构IDC称，今年第一季度，全球智能手机市场自2023年以来首次出现下滑，而内存芯片供应紧缺和伊朗战争可能会推高成本，并进一步限制增长",
+      "url": "https://database.caixin.com/2026-04-15/102434225.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "美国和伊朗正寻求在未来几天安排第二轮和谈，而霍尔木兹海峡的对峙加剧了全球能源危机，并使外交前景更加复杂",
+      "url": "https://database.caixin.com/2026-04-15/102434221.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "美国前财政部长、美联储主席珍妮特·耶伦表示，她仍然认为美国今年稍后可能降息，尽管伊朗战争引发的油价冲击为经济前景增添不确定性",
+      "url": "https://database.caixin.com/2026-04-15/102434219.html?cxapp_link=true"
+    },
+    {
+      "tag": "研报精华",
+      "summary": "惠誉认为，持续的高额补贴支出导致美团盈利能力与自由现金流恢复速度显著慢于预期；同时基于美团市场地位、运营效率优势及较强劲的净现金头寸，对其主体评级仍维持在BBB+",
+      "url": "https://database.caixin.com/2026-04-15/102434138.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "卫星宽带业务正迅速发展，尤其是在偏远地区。然而，由于火箭制造商延误及其他问题，亚马逊在推出自有服务方面进展受阻",
+      "url": "https://database.caixin.com/2026-04-15/102434134.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "Nationwide首席市场策略师Mark Hackett表示，机构投资者是股市反弹背后的推动力。在经历了激烈的抛售之后，市场注意力已重新转向基本面，他认为基本面提供了支撑",
+      "url": "https://database.caixin.com/2026-04-15/102434133.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "这些报价将使Anthropic在2月一轮300亿美元融资中给出的3500亿美元投前估值翻倍有余",
+      "url": "https://database.caixin.com/2026-04-15/102434119.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "期权市场上一笔规模较大的头寸押注美国10年期国债收益率将在三周内从当前的4.25%降至4.18%。另一笔则瞄准国债更深度的上涨，押注收益率将降至3月10日以来的最低点4.1%",
+      "url": "https://database.caixin.com/2026-04-15/102434118.html?cxapp_link=true"
+    }
+  ]
+}
