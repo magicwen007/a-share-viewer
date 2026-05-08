@@ -1,0 +1,471 @@
+{
+  "date": "2026-05-08",
+  "time": "10:00",
+  "label": "开盘",
+  "timestamp": "2026-05-08 10:00:22",
+  "index": {},
+  "market": {
+    "up_count": 2834,
+    "zt_count": 50,
+    "down_count": 2146,
+    "dt_count": 2,
+    "flat_count": 200
+  },
+  "industry": {},
+  "concept": {
+    "rise_top5": [
+      {
+        "概念": "DRG/DIP",
+        "涨跌幅": "1.80%"
+      },
+      {
+        "概念": "云游戏",
+        "涨跌幅": "1.78%"
+      },
+      {
+        "概念": "MLOps概念",
+        "涨跌幅": "1.65%"
+      },
+      {
+        "概念": "摘帽",
+        "涨跌幅": "1.64%"
+      },
+      {
+        "概念": "禽流感",
+        "涨跌幅": "1.61%"
+      }
+    ],
+    "fall_bottom5": [
+      {
+        "概念": "赛马概念",
+        "涨跌幅": "-0.88%"
+      },
+      {
+        "概念": "工业大麻",
+        "涨跌幅": "-0.77%"
+      },
+      {
+        "概念": "猪肉",
+        "涨跌幅": "-0.64%"
+      },
+      {
+        "概念": "光刻胶",
+        "涨跌幅": "-0.46%"
+      },
+      {
+        "概念": "CRO概念",
+        "涨跌幅": "-0.42%"
+      }
+    ]
+  },
+  "stocks": {
+    "zt_stocks": [
+      {
+        "name": "联动科技",
+        "code": "301369",
+        "price": 212.84,
+        "change": "16.10%"
+      },
+      {
+        "name": "酷特智能",
+        "code": "300840",
+        "price": 25.32,
+        "change": "15.83%"
+      },
+      {
+        "name": "博汇股份",
+        "code": "300839",
+        "price": 17.8,
+        "change": "15.58%"
+      },
+      {
+        "name": "百邦科技",
+        "code": "300736",
+        "price": 33.07,
+        "change": "14.63%"
+      },
+      {
+        "name": "雄塑科技",
+        "code": "300599",
+        "price": 14.1,
+        "change": "14.36%"
+      },
+      {
+        "name": "聚杰微纤",
+        "code": "300819",
+        "price": 80.48,
+        "change": "13.88%"
+      },
+      {
+        "name": "中青宝",
+        "code": "300052",
+        "price": 15.99,
+        "change": "12.05%"
+      },
+      {
+        "name": "星辉环材",
+        "code": "300834",
+        "price": 45.53,
+        "change": "11.02%"
+      },
+      {
+        "name": "恒锋工具",
+        "code": "300488",
+        "price": 38.27,
+        "change": "10.51%"
+      },
+      {
+        "name": "国安股份",
+        "code": "000839",
+        "price": 3.36,
+        "change": "10.16%"
+      },
+      {
+        "name": "荣联科技",
+        "code": "002642",
+        "price": 9.08,
+        "change": "10.06%"
+      },
+      {
+        "name": "新能泰山",
+        "code": "000720",
+        "price": 5.69,
+        "change": "10.06%"
+      },
+      {
+        "name": "完美世界",
+        "code": "002624",
+        "price": 17.55,
+        "change": "10.03%"
+      },
+      {
+        "name": "恒申新材",
+        "code": "000782",
+        "price": 8.23,
+        "change": "10.03%"
+      },
+      {
+        "name": "榕基软件",
+        "code": "002474",
+        "price": 8.34,
+        "change": "10.03%"
+      },
+      {
+        "name": "宏川智慧",
+        "code": "002930",
+        "price": 16.04,
+        "change": "10.01%"
+      },
+      {
+        "name": "传艺科技",
+        "code": "002866",
+        "price": 29.34,
+        "change": "10.01%"
+      },
+      {
+        "name": "通鼎互联",
+        "code": "002491",
+        "price": 20.66,
+        "change": "10.01%"
+      },
+      {
+        "name": "众生药业",
+        "code": "002317",
+        "price": 22.54,
+        "change": "10.00%"
+      },
+      {
+        "name": "铭普光磁",
+        "code": "002902",
+        "price": 36.18,
+        "change": "10.00%"
+      },
+      {
+        "name": "泰坦股份",
+        "code": "003036",
+        "price": 41.91,
+        "change": "10.00%"
+      },
+      {
+        "name": "云南锗业",
+        "code": "002428",
+        "price": 88.22,
+        "change": "10.00%"
+      },
+      {
+        "name": "兆新股份",
+        "code": "002256",
+        "price": 5.28,
+        "change": "10.00%"
+      },
+      {
+        "name": "甘肃能源",
+        "code": "000791",
+        "price": 9.57,
+        "change": "10.00%"
+      },
+      {
+        "name": "珠海中富",
+        "code": "000659",
+        "price": 4.4,
+        "change": "10.00%"
+      },
+      {
+        "name": "润建股份",
+        "code": "002929",
+        "price": 78.23,
+        "change": "10.00%"
+      },
+      {
+        "name": "圣阳股份",
+        "code": "002580",
+        "price": 32.9,
+        "change": "10.00%"
+      },
+      {
+        "name": "宝鼎科技",
+        "code": "002552",
+        "price": 27.65,
+        "change": "9.98%"
+      },
+      {
+        "name": "北部湾港",
+        "code": "000582",
+        "price": 13.67,
+        "change": "9.98%"
+      },
+      {
+        "name": "巨轮智能",
+        "code": "002031",
+        "price": 7.06,
+        "change": "9.97%"
+      }
+    ],
+    "dt_stocks": [],
+    "high_change": [
+      {
+        "name": "乔锋智能",
+        "code": "301603",
+        "price": 136.0,
+        "change": "9.79%"
+      },
+      {
+        "name": "维峰电子",
+        "code": "301328",
+        "price": 71.02,
+        "change": "9.13%"
+      },
+      {
+        "name": "宝丽迪",
+        "code": "300905",
+        "price": 69.67,
+        "change": "8.91%"
+      },
+      {
+        "name": "江苏国泰",
+        "code": "002091",
+        "price": 9.68,
+        "change": "8.76%"
+      },
+      {
+        "name": "嘉亨家化",
+        "code": "300955",
+        "price": 44.36,
+        "change": "8.22%"
+      },
+      {
+        "name": "唯特偶",
+        "code": "301319",
+        "price": 95.4,
+        "change": "8.21%"
+      },
+      {
+        "name": "大普微-UW",
+        "code": "301666",
+        "price": 467.47,
+        "change": "8.14%"
+      },
+      {
+        "name": "力诺药包",
+        "code": "301188",
+        "price": 28.37,
+        "change": "7.95%"
+      },
+      {
+        "name": "仁智股份",
+        "code": "002629",
+        "price": 6.79,
+        "change": "7.95%"
+      },
+      {
+        "name": "雷赛智能",
+        "code": "002979",
+        "price": 48.57,
+        "change": "7.91%"
+      },
+      {
+        "name": "弘景光电",
+        "code": "301479",
+        "price": 135.68,
+        "change": "7.77%"
+      },
+      {
+        "name": "高伟达",
+        "code": "300465",
+        "price": 15.81,
+        "change": "7.70%"
+      },
+      {
+        "name": "太辰光",
+        "code": "300570",
+        "price": 161.58,
+        "change": "7.68%"
+      },
+      {
+        "name": "飞龙股份",
+        "code": "002536",
+        "price": 42.39,
+        "change": "7.59%"
+      },
+      {
+        "name": "卫宁健康",
+        "code": "300253",
+        "price": 9.98,
+        "change": "7.54%"
+      },
+      {
+        "name": "张小泉",
+        "code": "301055",
+        "price": 34.4,
+        "change": "7.53%"
+      },
+      {
+        "name": "迪安诊断",
+        "code": "300244",
+        "price": 22.04,
+        "change": "7.51%"
+      },
+      {
+        "name": "胜宏科技",
+        "code": "300476",
+        "price": 363.37,
+        "change": "7.49%"
+      },
+      {
+        "name": "贝瑞基因",
+        "code": "000710",
+        "price": 10.71,
+        "change": "7.21%"
+      },
+      {
+        "name": "华大基因",
+        "code": "300676",
+        "price": 44.18,
+        "change": "7.03%"
+      }
+    ],
+    "low_change": []
+  },
+  "news": [
+    {
+      "tag": "华尔街原声",
+      "summary": "AMD首席执行官苏姿丰（Lisa Su）表示，随着AI在大型企业中的采用率快速上升，算力市场正迎来一个明确的拐点",
+      "url": "https://database.caixin.com/2026-05-07/102441595.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "自4月30日以来的多次大幅涨势，都未能推动日元突破这一关口",
+      "url": "https://database.caixin.com/2026-05-07/102441452.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "显示投资者对有望挑战硅谷人工智能(AI)巨头的中国初创公司越来越感兴趣",
+      "url": "https://database.caixin.com/2026-05-07/102441455.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "该公司实验室团队的联合负责人称，自去年底以来，Anthropic就要求员工改进聊天机器人处理个人咨询的方式，比如有关健康、旅行和食谱的问题",
+      "url": "https://database.caixin.com/2026-05-07/102441462.html?cxapp_link=true"
+    },
+    {
+      "tag": "霍尔木兹日报",
+      "summary": "5月7日截至发稿，海峡通船为零，昨晚也仅一艘杂货船通过。近日一艘中国油轮等多国商船被袭",
+      "url": "https://database.caixin.com/2026-05-07/102441369.html?cxapp_link=true"
+    },
+    {
+      "tag": "今日热点",
+      "summary": "A股三大指数震荡爬升，CPO、PCB等算力硬件概念高热带动通信、电子行业领跑，机械设备板块大涨，煤炭、油气股跌幅居前。港股连续两日显著上涨",
+      "url": "https://database.caixin.com/2026-05-07/102441355.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "安谋首席执行官Rene Haas在财报电话会议上表示，上季度手机出货负增长，但主要集中在低端市场，因此对安谋的影响相对有限",
+      "url": "https://database.caixin.com/2026-05-07/102441322.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "数据显示，今年韩国上市公司的总市值飙升71%，达到4.59万亿美元，而加拿大上市公司的总市值增长约7%，至4.5万亿美元",
+      "url": "https://database.caixin.com/2026-05-07/102441320.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "据知情人士透露，特朗普政府正研究利用美国军事基地及国防部其他场所地下的石油资源，以帮助补充大幅消耗的应急储备",
+      "url": "https://database.caixin.com/2026-05-07/102441319.html?cxapp_link=true"
+    },
+    {
+      "tag": "权益周观察",
+      "summary": "对于近期上涨较多的北美算力链，接近六成的机构投资者认为，未来一个月行情会转向高位震荡",
+      "url": "https://database.caixin.com/2026-05-07/102441313.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "加拿大总理马克·卡尼在1月份同意，计划允许每年多达4.9万辆中国制造的电动汽车以6.1%的低关税进入加拿大",
+      "url": "https://database.caixin.com/2026-05-07/102441312.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "私募股权业的交易活动低迷，正促使大型机构高管转而寻求投身更为活跃的精品投资机构",
+      "url": "https://database.caixin.com/2026-05-07/102441324.html?cxapp_link=true"
+    },
+    {
+      "tag": "光伏观察",
+      "summary": "因4月1日起国内光伏产品出口退税全面取消政策生效，3月中国太阳能电池出口额同比增加超八成",
+      "url": "https://database.caixin.com/2026-05-07/102441232.html?cxapp_link=true"
+    },
+    {
+      "tag": "华尔街原声",
+      "summary": "回顾其整个职业生涯，巴菲特坦言仅遇到过约五次真正具有极高价值的投资机会",
+      "url": "https://database.caixin.com/2026-05-06/102441142.html?cxapp_link=true"
+    },
+    {
+      "tag": "华尔街原声",
+      "summary": "巴菲特认为AI如果被恶意使用，将带来极其糟糕的后果",
+      "url": "https://database.caixin.com/2026-05-06/102441141.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "宁德时代完成50亿美元的配售筹资后，投资者将关注重点转向其增长前景，交易员迅速解除对这家电池巨头的空头头寸",
+      "url": "https://database.caixin.com/2026-05-06/102441087.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "美国汽油价格自2022年7月以来首次突破每加仑4.50美元，中东地区冲突持续给司机们带来了更大压力",
+      "url": "https://database.caixin.com/2026-05-06/102441085.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "马来西亚将从7月起限制整车进口电动汽车进入市场，此举势必会将许多中国中档汽车排挤出该国市场",
+      "url": "https://database.caixin.com/2026-05-06/102441083.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "油价延续跌势，此前有报道称美国与伊朗接近达成协议以结束中东战争。",
+      "url": "https://database.caixin.com/2026-05-06/102441080.html?cxapp_link=true"
+    },
+    {
+      "tag": "量化观察",
+      "summary": "4月，高质量因子策略跑输沪深300指数2.10%",
+      "url": "https://database.caixin.com/2026-05-06/102441073.html?cxapp_link=true"
+    }
+  ]
+}
