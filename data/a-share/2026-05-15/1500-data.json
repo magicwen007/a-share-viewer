@@ -1,0 +1,182 @@
+{
+  "date": "2026-05-15",
+  "time": "15:00",
+  "label": "收盘",
+  "timestamp": "2026-05-15 15:10:16",
+  "index": {
+    "sh": {
+      "close": 4135.39,
+      "change": -1.02,
+      "amount": "33445亿"
+    },
+    "sz": {
+      "close": 15561.37,
+      "change": -1.17
+    },
+    "cy": {
+      "close": 3929.06,
+      "change": -0.56
+    },
+    "kc": {
+      "close": 1696.26,
+      "change": -1.67
+    },
+    "total_amount": "3.34万亿"
+  },
+  "market": {},
+  "industry": {},
+  "concept": {
+    "rise_top5": [
+      {
+        "概念": "减速器",
+        "涨跌幅": "3.04%"
+      },
+      {
+        "概念": "氟化工概念",
+        "涨跌幅": "2.46%"
+      },
+      {
+        "概念": "工业母机",
+        "涨跌幅": "1.75%"
+      },
+      {
+        "概念": "人形机器人",
+        "涨跌幅": "1.72%"
+      },
+      {
+        "概念": "PEEK材料",
+        "涨跌幅": "1.49%"
+      }
+    ],
+    "fall_bottom5": [
+      {
+        "概念": "金属铅",
+        "涨跌幅": "-4.61%"
+      },
+      {
+        "概念": "金属锌",
+        "涨跌幅": "-4.35%"
+      },
+      {
+        "概念": "黄金概念",
+        "涨跌幅": "-3.74%"
+      },
+      {
+        "概念": "金属铜",
+        "涨跌幅": "-3.33%"
+      },
+      {
+        "概念": "F5G概念",
+        "涨跌幅": "-2.74%"
+      }
+    ]
+  },
+  "stocks": {
+    "zt_stocks": [],
+    "dt_stocks": [],
+    "high_change": [],
+    "low_change": []
+  },
+  "news": [
+    {
+      "tag": "今日热点",
+      "summary": "机器人板块早盘强势领涨，三丰智能“20cm”涨停，绿的谐波、机器人、雷赛智能、信捷电气、埃斯顿等涨停",
+      "url": "https://database.caixin.com/2026-05-15/102444251.html?cxapp_link=true"
+    },
+    {
+      "tag": "霍尔木兹日报",
+      "summary": "北京时间5月15日08:52，一艘挂越南船旗的大型液体散货船“NV SUNSHINE”驶出阿曼湾，突破美军封锁",
+      "url": "https://database.caixin.com/2026-05-15/102444248.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "Cerebras Systems Inc.上市首日股价大涨68%，此前该公司通过今年规模最大的首次公开募股(IPO)募资55.5亿美元，显示投资者对人工智能数据中心及其所用芯片兴趣高涨",
+      "url": "https://database.caixin.com/2026-05-15/102444197.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "",
+      "url": "https://database.caixin.com/2026-05-15/102444194.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "那些年初看似迎来翻身机会的主动型基金经理，如今再次面临一个老问题：由少数科技巨头主导的市场上涨，使多元化投资组合难以追上",
+      "url": "https://database.caixin.com/2026-05-15/102444192.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "据知情人士透露，维多集团正在向客户兜售伊拉克巴士拉原油，这显示部分原油可能已经成功运出波斯湾",
+      "url": "https://database.caixin.com/2026-05-15/102444190.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "知情人士透露，苹果公司与OpenAI为期两年的合作关系出现裂痕，这家人工智能初创公司未能从该协议中获得预期收益，目前正准备采取可能的法律行动",
+      "url": "https://database.caixin.com/2026-05-15/102444177.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "美国最大的半导体设备供应商应用材料发布的销售和利润预测远超分析师预期，这主要得益于人工智能计算和存储芯片需求的飙升",
+      "url": "https://database.caixin.com/2026-05-15/102444176.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "美国总统唐纳德·特朗普的最新财务披露显示，他在今年第一季度买入多家美国大型公司的股票和债券，总规模达数千万美元甚至更高",
+      "url": "https://database.caixin.com/2026-05-15/102444174.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "福特股价两天上涨约21%，创六年来最佳表现。该股周四涨6.7%，收于2024年7月以来最高水平，年迄今表现已转为上涨",
+      "url": "https://database.caixin.com/2026-05-15/102444173.html?cxapp_link=true"
+    },
+    {
+      "tag": "华尔街原声",
+      "summary": "贝莱德固定收益投资组合经理Jeffrey Rosenberg认为，在债券供给侧的消化能力上，美国企业债与美国国债市场呈现出显著的分化",
+      "url": "https://database.caixin.com/2026-05-14/102444061.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "外国投资者进一步撤离韩国股市，尽管韩国股市在本地资金流入和人工智能AI热潮的推动下不断攀升至新高",
+      "url": "https://database.caixin.com/2026-05-14/102444019.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "欧洲央行管委Martins Kazaks称，如果原油价格上涨传导至通胀预期，欧洲央行将不得不提高借贷成本",
+      "url": "https://database.caixin.com/2026-05-14/102444021.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "周四，伦敦金属交易所的期铜价格一度下跌1.9%，结束了此前持续八天的涨势",
+      "url": "https://database.caixin.com/2026-05-14/102444024.html?cxapp_link=true"
+    },
+    {
+      "tag": "今日热点",
+      "summary": "A股三大指数早盘均走弱，港股高开低走但仍上涨。航运港口、工业气体板块逆市上涨，银行、养殖股表现活跃，国防军工行业跌幅居前",
+      "url": "https://database.caixin.com/2026-05-14/102443941.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "按照申报文件中本次发售和已发行在外的股份计算，此次IPO定价使Cerebras市值达到约400亿美元",
+      "url": "https://database.caixin.com/2026-05-14/102443899.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "根据花旗Asia South市场主管表示，此次扩张重点聚焦于新加坡与印度；该银行正在这两个国家招募前台和技术岗位人才，以强化其全球平台",
+      "url": "https://database.caixin.com/2026-05-14/102443903.html?cxapp_link=true"
+    },
+    {
+      "tag": "霍尔木兹日报",
+      "summary": "昨日三只中国船舶顺利通过霍尔木兹海峡，中国被困油轮或将于月底前陆续驶出海峡",
+      "url": "https://database.caixin.com/2026-05-14/102443893.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "美联储周三表示，本期将购买约100亿美元的国库券。此举反映出，该项旨在通过补充金融体系准备金来降低短期融资成本的计划进一步放缓",
+      "url": "https://database.caixin.com/2026-05-14/102443901.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "盯上中国最火AI公司的空头发现，由于这些公司公开交易的股票数量极少，想要做空并不容易",
+      "url": "https://database.caixin.com/2026-05-14/102443873.html?cxapp_link=true"
+    }
+  ]
+}
