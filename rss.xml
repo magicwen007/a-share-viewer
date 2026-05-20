@@ -5,8 +5,14 @@
   <link>https://magicwen007.github.io/a-share-viewer/</link>
   <description>A股每日收盘点评</description>
   <language>zh-cn</language>
-  <lastBuildDate>Tue, 19 May 2026 07:11:53 +0800</lastBuildDate>
+  <lastBuildDate>Wed, 20 May 2026 04:01:25 +0800</lastBuildDate>
   <atom:link href="https://magicwen007.github.io/a-share-viewer/rss.xml" rel="self" type="application/rss+xml"/>
+  <item>
+      <title><![CDATA[2026-05-20 午盘点评]]></title>
+      <link>https://raw.githubusercontent.com/magicwen007/a-share-viewer/main/data/a-share/2026-05-20/weixin.md</link>
+      <guid>https://raw.githubusercontent.com/magicwen007/a-share-viewer/main/data/a-share/2026-05-20/weixin.md</guid>
+      <pubDate>Wed, 20 May 2026 15:00:00 +0800</pubDate>
+    </item>
   <item>
       <title><![CDATA[2026-05-19 收盘点评]]></title>
       <link>https://raw.githubusercontent.com/magicwen007/a-share-viewer/main/data/a-share/2026-05-19/weixin.md</link>
