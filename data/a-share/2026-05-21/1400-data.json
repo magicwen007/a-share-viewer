@@ -1,0 +1,442 @@
+{
+  "date": "2026-05-21",
+  "time": "14:00",
+  "label": "盘中",
+  "timestamp": "2026-05-21 14:00:36",
+  "index": {
+    "sh": {
+      "close": 4142.84,
+      "change": -0.46,
+      "amount": "26101亿"
+    },
+    "sz": {
+      "close": 15563.22,
+      "change": -0.04
+    },
+    "cy": {
+      "close": 3919.81,
+      "change": -0.05
+    },
+    "kc": {
+      "close": 1825.52,
+      "change": -0.36
+    },
+    "total_amount": "2.61万亿"
+  },
+  "market": {},
+  "industry": {},
+  "concept": {
+    "rise_top5": [],
+    "fall_bottom5": []
+  },
+  "stocks": {
+    "zt_stocks": [
+      {
+        "name": "金利华电",
+        "code": "300069",
+        "price": 44.06,
+        "change": "19.99%"
+      },
+      {
+        "name": "昊志机电",
+        "code": "300503",
+        "price": 89.35,
+        "change": "17.81%"
+      },
+      {
+        "name": "聚光科技",
+        "code": "300203",
+        "price": 15.75,
+        "change": "15.72%"
+      },
+      {
+        "name": "大族数控",
+        "code": "301200",
+        "price": 254.83,
+        "change": "13.76%"
+      },
+      {
+        "name": "秋田微",
+        "code": "300939",
+        "price": 54.71,
+        "change": "12.94%"
+      },
+      {
+        "name": "冠中生态",
+        "code": "300948",
+        "price": 26.56,
+        "change": "12.07%"
+      },
+      {
+        "name": "力诺药包",
+        "code": "301188",
+        "price": 45.19,
+        "change": "12.05%"
+      },
+      {
+        "name": "华灿光电",
+        "code": "300323",
+        "price": 19.03,
+        "change": "11.61%"
+      },
+      {
+        "name": "豪恩汽电",
+        "code": "301488",
+        "price": 158.74,
+        "change": "11.24%"
+      },
+      {
+        "name": "派瑞股份",
+        "code": "300831",
+        "price": 23.77,
+        "change": "11.18%"
+      },
+      {
+        "name": "雷曼光电",
+        "code": "300162",
+        "price": 9.93,
+        "change": "11.07%"
+      },
+      {
+        "name": "京东方Ａ",
+        "code": "000725",
+        "price": 4.69,
+        "change": "10.09%"
+      },
+      {
+        "name": "天秦装备",
+        "code": "300922",
+        "price": 21.54,
+        "change": "10.07%"
+      },
+      {
+        "name": "索菱股份",
+        "code": "002766",
+        "price": 5.14,
+        "change": "10.06%"
+      },
+      {
+        "name": "模塑科技",
+        "code": "000700",
+        "price": 15.46,
+        "change": "10.04%"
+      },
+      {
+        "name": "五方光电",
+        "code": "002962",
+        "price": 20.09,
+        "change": "10.02%"
+      },
+      {
+        "name": "博云新材",
+        "code": "002297",
+        "price": 25.92,
+        "change": "10.02%"
+      },
+      {
+        "name": "和泰机电",
+        "code": "001225",
+        "price": 53.76,
+        "change": "10.01%"
+      },
+      {
+        "name": "亚世光电",
+        "code": "002952",
+        "price": 29.47,
+        "change": "10.00%"
+      },
+      {
+        "name": "锋龙股份",
+        "code": "002931",
+        "price": 60.04,
+        "change": "10.00%"
+      },
+      {
+        "name": "德赛西威",
+        "code": "002920",
+        "price": 106.12,
+        "change": "10.00%"
+      },
+      {
+        "name": "直真科技",
+        "code": "003007",
+        "price": 54.34,
+        "change": "10.00%"
+      },
+      {
+        "name": "昂利康",
+        "code": "002940",
+        "price": 45.65,
+        "change": "10.00%"
+      },
+      {
+        "name": "惠威科技",
+        "code": "002888",
+        "price": 25.74,
+        "change": "10.00%"
+      },
+      {
+        "name": "埃斯顿",
+        "code": "002747",
+        "price": 28.71,
+        "change": "10.00%"
+      },
+      {
+        "name": "龙星科技",
+        "code": "002442",
+        "price": 7.37,
+        "change": "10.00%"
+      },
+      {
+        "name": "华映科技",
+        "code": "000536",
+        "price": 4.29,
+        "change": "10.00%"
+      },
+      {
+        "name": "长虹华意",
+        "code": "000404",
+        "price": 10.01,
+        "change": "10.00%"
+      },
+      {
+        "name": "派林生物",
+        "code": "000403",
+        "price": 11.55,
+        "change": "10.00%"
+      },
+      {
+        "name": "飞亚达",
+        "code": "000026",
+        "price": 23.98,
+        "change": "10.00%"
+      }
+    ],
+    "dt_stocks": [],
+    "high_change": [
+      {
+        "name": "南  玻Ａ",
+        "code": "000012",
+        "price": 4.0,
+        "change": "9.89%"
+      },
+      {
+        "name": "海昌新材",
+        "code": "300885",
+        "price": 32.93,
+        "change": "9.62%"
+      },
+      {
+        "name": "精锻科技",
+        "code": "300258",
+        "price": 14.57,
+        "change": "9.55%"
+      },
+      {
+        "name": "儒竞科技",
+        "code": "301525",
+        "price": 85.27,
+        "change": "9.52%"
+      },
+      {
+        "name": "胜通能源",
+        "code": "001331",
+        "price": 62.12,
+        "change": "9.17%"
+      },
+      {
+        "name": "福赛科技",
+        "code": "301529",
+        "price": 179.4,
+        "change": "8.76%"
+      },
+      {
+        "name": "豫能控股",
+        "code": "001896",
+        "price": 16.18,
+        "change": "8.74%"
+      },
+      {
+        "name": "绿通科技",
+        "code": "301322",
+        "price": 58.83,
+        "change": "8.70%"
+      },
+      {
+        "name": "凯莱英",
+        "code": "002821",
+        "price": 128.92,
+        "change": "8.46%"
+      },
+      {
+        "name": "凯伦股份",
+        "code": "300715",
+        "price": 20.92,
+        "change": "7.89%"
+      },
+      {
+        "name": "新宁物流",
+        "code": "300013",
+        "price": 5.02,
+        "change": "7.73%"
+      },
+      {
+        "name": "瑞迪智驱",
+        "code": "301596",
+        "price": 88.03,
+        "change": "7.63%"
+      },
+      {
+        "name": "雄塑科技",
+        "code": "300599",
+        "price": 12.56,
+        "change": "7.63%"
+      },
+      {
+        "name": "铖昌科技",
+        "code": "001270",
+        "price": 148.41,
+        "change": "7.57%"
+      },
+      {
+        "name": "万马科技",
+        "code": "300698",
+        "price": 40.9,
+        "change": "7.55%"
+      },
+      {
+        "name": "联动科技",
+        "code": "301369",
+        "price": 278.71,
+        "change": "7.54%"
+      },
+      {
+        "name": "中超控股",
+        "code": "002471",
+        "price": 8.27,
+        "change": "7.40%"
+      },
+      {
+        "name": "鹏鼎控股",
+        "code": "002938",
+        "price": 96.88,
+        "change": "7.38%"
+      },
+      {
+        "name": "信濠光电",
+        "code": "301051",
+        "price": 26.53,
+        "change": "7.24%"
+      },
+      {
+        "name": "明阳电路",
+        "code": "300739",
+        "price": 32.24,
+        "change": "7.00%"
+      }
+    ],
+    "low_change": []
+  },
+  "news": [
+    {
+      "tag": "今日热点",
+      "summary": "人形机器人盘中走高，上纬新材涨13.81%，华升股份、凯众股份、埃斯顿、北特科技、锋龙股份、伯特利、昊志机电涨停",
+      "url": "https://database.caixin.com/2026-05-21/102446110.html?cxapp_link=true"
+    },
+    {
+      "tag": "霍尔木兹日报",
+      "summary": "北京时间5月20日03:58，一艘挂中国船旗的超大型液体散货船“YUAN GUI YANG”号驶出阿曼湾，突破美军封锁",
+      "url": "https://database.caixin.com/2026-05-21/102446094.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "韩国5月份前20天的出口保持强劲增长，显示外需韧性仍在。不过，油价上涨和更广泛的通胀担忧可能给决策前景带来挑战",
+      "url": "https://database.caixin.com/2026-05-21/102446084.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "穆迪评级将墨西哥的信用评级下调至投资级的最低级别，理由是该国财政状况恶化，这引发了人们对拉丁美洲第二大经济体正走向垃圾级的担忧",
+      "url": "https://database.caixin.com/2026-05-21/102446068.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "据知情人士称，美国总统唐纳德·特朗普准备最早于周四颁布一道旨在加强人工智能网络安全的行政命令，并已邀请科技行业领袖参加此次活动",
+      "url": "https://database.caixin.com/2026-05-21/102446064.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "在伊朗战争引发市场动荡后，4月外资重返中国A股，创下三个月来的首个月度净流入。",
+      "url": "https://database.caixin.com/2026-05-21/102446061.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "一位知情人士援引这家初创公司向投资者披露的数据称，这家Claude开发商预计第二季度收入将达到109亿美元，较前一季度增长逾一倍",
+      "url": "https://database.caixin.com/2026-05-21/102446040.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "爱彼迎首席执行官Brian Chesky为公司使用中国AI模型辩护，称担心中国公司恐获取美国用户数据的国会议员“误解”了这项技术",
+      "url": "https://database.caixin.com/2026-05-21/102446039.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "该公司周三晚些时候在声明中表示，预计截至7月的三个月营收约为910亿美元",
+      "url": "https://database.caixin.com/2026-05-21/102446038.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "SpaceX公开提交首次公开募股(IPO)文件，披露数十亿美元亏损以及一项超级投票权股份计划",
+      "url": "https://database.caixin.com/2026-05-21/102446037.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "这位即将上任的美联储主席此前曾猛烈抨击该央行未能认识到AI方面的突破将提高生产力，形成“显著降低通胀的力量”，从而使政策制定者更容易降息",
+      "url": "https://database.caixin.com/2026-05-21/102446036.html?cxapp_link=true"
+    },
+    {
+      "tag": "华尔街原声",
+      "summary": "资产管理公司Seymour Asset Management创始人Tim Seymour表示，近期全球债券市场遭遇抛售，多国基准收益率升至数年来的高点，这一市场表现与2021年秋季美联储政策严重滞后时的情景高度相似",
+      "url": "https://database.caixin.com/2026-05-20/102445869.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "三星电子与其最大工会的谈判破裂，该工会告诉当地媒体，它将按计划罢工，势将扰乱这家全球最大记忆体芯片制造商的营运",
+      "url": "https://database.caixin.com/2026-05-20/102445819.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "印尼总统普拉博沃制定计划，加强国家对大宗商品出口的控制，以应对不断增加的财政压力和印尼盾跌势",
+      "url": "https://database.caixin.com/2026-05-20/102445817.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "受有利的同比基数和政府降低能源账单的努力所推动，英国4月通胀降至逾一年低位。尽管如此，未来几个月价格压力预计将再度回升",
+      "url": "https://database.caixin.com/2026-05-20/102445815.html?cxapp_link=true"
+    },
+    {
+      "tag": "今日热点",
+      "summary": "A股震荡偏弱，三大指数早盘涨跌不一。半导体板块逆市爆发，光伏设备、光纤概念震荡走强，绿电概念显著调整，传媒股跌幅居前",
+      "url": "https://database.caixin.com/2026-05-20/102445786.html?cxapp_link=true"
+    },
+    {
+      "tag": "霍尔木兹日报",
+      "summary": "昨日（5月19日）仅一艘挂冈比亚国旗的杂货船从霍尔木兹海峡驶出",
+      "url": "https://database.caixin.com/2026-05-20/102445766.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "Meta将在全球范围内裁减约8000个岗位，并鼓励员工居家办公",
+      "url": "https://database.caixin.com/2026-05-20/102445748.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "摩根士丹利日本负责人表示，他希望日元对美元汇率升至140左右，实现这一目标的关键在于日本央行的行动",
+      "url": "https://database.caixin.com/2026-05-20/102445746.html?cxapp_link=true"
+    },
+    {
+      "tag": "市场动态",
+      "summary": "印尼上市公司的总市值已从1月份的高点暴跌逾30%至6180亿美元，而新加坡上市公司的总市值则攀升至6450亿美元",
+      "url": "https://database.caixin.com/2026-05-20/102445742.html?cxapp_link=true"
+    }
+  ]
+}
